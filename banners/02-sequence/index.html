@@ -14,7 +14,7 @@
      Light sweeps smoothly from left to right and reveals the suppressors; the camera slowly zooms in.
      Only the photo's own pixels. 8 s loop, CSS only. */
   .ol-banner { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
-  .ol-cam { position: absolute; inset: 0; transform-origin: 68% 12%; animation: ol-zoom 14s ease-in-out infinite alternate; will-change: transform; }
+  .ol-cam { position: absolute; inset: 0; transform-origin: 68% 30%; animation: ol-zoom 6.5s ease-in-out infinite; will-change: transform; }
   .ol-cam > span { position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; }
   .ol-dark { background-image: url(bg-dark.jpg); }
   .ol-lit  { background-image: url(bg.jpg);
@@ -33,15 +33,14 @@
     -webkit-mask-size: 100% 100%, 300% 100%; mask-size: 100% 100%, 300% 100%;
     -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
     -webkit-mask-composite: source-in; mask-composite: intersect;
-    animation: ol-shine 4.5s ease-in-out 3.2s infinite; }
+    animation: ol-shine 6.5s ease-in-out 6.5s infinite; }
   @keyframes ol-shine {
-    0%   { -webkit-mask-position: 0 0, 62% 0; mask-position: 0 0, 62% 0; opacity: .9; }
-    75%  { -webkit-mask-position: 0 0, 18% 0; mask-position: 0 0, 18% 0; opacity: .9; }
-    100% { -webkit-mask-position: 0 0, 18% 0; mask-position: 0 0, 18% 0; opacity: .9; } }
-  /* camera: slow, endless glide left <-> right with a gentle zoom; runs back and forth (alternate), never jumps */
+    0%        { -webkit-mask-position: 0 0, 62% 0; mask-position: 0 0, 62% 0; opacity: .9; }
+    60%, 100% { -webkit-mask-position: 0 0, 18% 0; mask-position: 0 0, 18% 0; opacity: .9; } }
+  /* camera: gentle zoom only, in step with the light: pushes in while the light passes, eases back, 6.5 s cycle */
   @keyframes ol-zoom {
-    from { transform: scale(1.04) translate(2.5%, 0); }
-    to   { transform: scale(1.13) translate(-2.5%, 0); } }
+    0%, 100% { transform: scale(1.02); }
+    60%      { transform: scale(1.09); } }
   @media (prefers-reduced-motion: reduce) { .ol-cam, .ol-lit, .ol-shine { animation: none; } .ol-lit { -webkit-mask: none; mask: none; } }
 </style>
 </head>
