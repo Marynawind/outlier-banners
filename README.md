@@ -23,3 +23,14 @@ python3 -m http.server 8790
 ```
 
 Then open http://localhost:8790.
+
+## Banner photos
+
+Final retouched photos for static banners, full quality, in [`photos/`](photos/):
+
+| Photo | Scene | Size |
+|---|---|---|
+| [IMG_9666](photos/IMG_9666.jpg) | three suppressors, glowing logo on the wall, smoke | 3162×1344 |
+| [IMG_9644](photos/IMG_9644.jpg) | three suppressors, glowing logo on a concrete wall | 2752×1536 |
+| [IMG_9679](photos/IMG_9679.jpg) | two suppressors on black with reflections | 2752×1536 |
+| [IMG_9623](photos/IMG_9623.jpg) | lying and standing suppressor, warm backlight | 2752×1536 |
