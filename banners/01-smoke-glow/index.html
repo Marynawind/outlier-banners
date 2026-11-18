@@ -24,7 +24,7 @@
      own smoke zooms and slides inside it, so the clouds visibly roll closer / farther.
      Only the photo's own pixels are used, so no colour or saturation is added. */
   .ol-move { overflow: hidden; }
-  .ol-move > i { position: absolute; inset: 0; background: url(smoke-tex.jpg) center / cover no-repeat;
+  .ol-move > i { position: absolute; inset: -10%; background: url(smoke-tex.jpg) center / cover no-repeat;
     will-change: transform; }
   .ol-move.m1 { --m: url(smoke.png); opacity: .7; }
   .ol-move.m1 > i { transform-origin: 10% 45%; animation: ol-roll1 15s ease-in-out infinite alternate; }
