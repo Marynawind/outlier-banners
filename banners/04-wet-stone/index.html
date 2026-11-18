@@ -42,8 +42,17 @@
   @keyframes ol-rim { from { -webkit-mask-position: 0 0, 100% 0; mask-position: 0 0, 100% 0; } to { -webkit-mask-position: 0 0, 0% 0; mask-position: 0 0, 0% 0; } }
   /* the lower edge of the top highlight softly spreads down the body and draws back (light spilling) */
   .ol-spill { position: absolute; inset: 0; pointer-events: none; background: url(spill.png) center / 100% 100% no-repeat;
-    mix-blend-mode: screen; transform-origin: 50% 25%; animation: ol-spill 6s ease-in-out infinite alternate; }
-  @keyframes ol-spill { from { opacity: 0; transform: scaleY(.9); } to { opacity: .9; transform: scaleY(1.06); } }
+    mix-blend-mode: screen; opacity: 0; animation: ol-spill 6s ease-in-out infinite;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 60%, transparent 100%);
+            mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 60%, transparent 100%);
+    -webkit-mask-size: 100% 300%; mask-size: 100% 300%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+  /* edge grows downward, holds, then fades (never shrinks back up) */
+  @keyframes ol-spill {
+    0%   { opacity: 0;  -webkit-mask-position: 0 100%; mask-position: 0 100%; }
+    15%  { opacity: .9; }
+    65%  { opacity: .9; -webkit-mask-position: 0 0%; mask-position: 0 0%; }
+    85%  { opacity: .9; -webkit-mask-position: 0 0%; mask-position: 0 0%; }
+    100% { opacity: 0;  -webkit-mask-position: 0 0%; mask-position: 0 0%; } }
   @keyframes ol-twinkle { 0%, 100% { opacity: 0; } 25% { opacity: .2; } 45% { opacity: 1; } 60% { opacity: .3; } 80% { opacity: .8; } }
   @keyframes ol-sparkle { 0%, 100% { opacity: .1; } 30% { opacity: 1; } 50% { opacity: .45; } 70% { opacity: 1; } }
   @media (prefers-reduced-motion: reduce) { .ol-banner > span { animation: none; } .ol-banner > span.ol-tw, .ol-banner > span.ol-rim, .ol-banner > span.ol-rimglow, .ol-banner > span.ol-rimdark { opacity: 0; } .ol-banner > span.ol-glint { opacity: 0; } }
