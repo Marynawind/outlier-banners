@@ -20,13 +20,13 @@
   .ol-lit   { background: url(bg.jpg) center / cover no-repeat; mix-blend-mode: screen; }
   .ol-shade { background: #000; }
 
-  /* drifting smoke: the photo's own smoke slides slowly inside the smoke area, two layers in different directions */
-  .ol-drift { background: url(smoke-tex.jpg) no-repeat; mix-blend-mode: lighten; --m: url(smoke.png); }
-  .ol-drift.d1 { background-size: 122% 122%; animation: ol-drift1 38s ease-in-out infinite alternate, ol-fade 13s ease-in-out infinite; }
-  .ol-drift.d2 { background-size: 130% 130%; animation: ol-drift2 52s ease-in-out infinite alternate, ol-fade 17s ease-in-out -6s infinite; }
-  @keyframes ol-drift1 { from { background-position: 0% 60%; } to { background-position: 100% 30%; } }
-  @keyframes ol-drift2 { from { background-position: 100% 20%; } to { background-position: 0% 70%; } }
-  @keyframes ol-fade { 0%, 100% { opacity: .35; } 50% { opacity: .75; } }
+  /* moving smoke: the photo's own smoke slowly zooms in and out (comes closer / moves away) inside the smoke area.
+     Lighten blend never adds colour or saturation beyond what the photo already has. */
+  .ol-drift { background: url(smoke-tex.jpg) no-repeat; mix-blend-mode: lighten; --m: url(smoke.png); opacity: .8; }
+  .ol-drift.d1 { background-position: 8% 45%;  animation: ol-zoom1 14s ease-in-out infinite alternate; }
+  .ol-drift.d2 { background-position: 92% 45%; animation: ol-zoom2 17s ease-in-out infinite alternate; }
+  @keyframes ol-zoom1 { from { background-size: 100% 100%; } to { background-size: 135% 135%; } }
+  @keyframes ol-zoom2 { from { background-size: 138% 138%; } to { background-size: 100% 100%; } }
   .z-b1 { --m: url(b1.png); } .z-b2 { --m: url(b2.png); } .z-b3 { --m: url(b3.png); }
   .z-r1 { --m: url(r1.png); } .z-r2 { --m: url(r2.png); } .z-r3 { --m: url(r3.png); }
   .z-ob { --m: url(ob.png); } .z-or { --m: url(or.png); }
@@ -48,12 +48,12 @@
   .ol-lit.z-ob { animation: ol-flick-c 6.6s linear -3.1s infinite; }
   .ol-lit.z-or { animation: ol-flick-a 7.4s linear -0.5s infinite; }
 
-  @keyframes ol-flick-a { 0% { opacity: .1; } 9% { opacity: .85; } 17% { opacity: .35; } 31% { opacity: 1; }
-    44% { opacity: .2; } 58% { opacity: .7; } 71% { opacity: .15; } 86% { opacity: .9; } 100% { opacity: .1; } }
-  @keyframes ol-flick-b { 0% { opacity: .5; } 14% { opacity: .05; } 27% { opacity: .9; } 36% { opacity: .4; }
-    52% { opacity: 1; } 63% { opacity: .1; } 79% { opacity: .75; } 91% { opacity: .25; } 100% { opacity: .5; } }
-  @keyframes ol-flick-c { 0% { opacity: .3; } 11% { opacity: 1; } 23% { opacity: .1; } 40% { opacity: .65; }
-    49% { opacity: .2; } 66% { opacity: .95; } 77% { opacity: .3; } 88% { opacity: .6; } 100% { opacity: .3; } }
+  @keyframes ol-flick-a { 0% { opacity: 0.06; } 9% { opacity: 0.51; } 17% { opacity: 0.21; } 31% { opacity: 0.60; }
+    44% { opacity: 0.12; } 58% { opacity: 0.42; } 71% { opacity: 0.09; } 86% { opacity: 0.54; } 100% { opacity: 0.06; } }
+  @keyframes ol-flick-b { 0% { opacity: 0.30; } 14% { opacity: 0.03; } 27% { opacity: 0.54; } 36% { opacity: 0.24; }
+    52% { opacity: 0.60; } 63% { opacity: 0.06; } 79% { opacity: 0.45; } 91% { opacity: 0.15; } 100% { opacity: 0.30; } }
+  @keyframes ol-flick-c { 0% { opacity: 0.18; } 11% { opacity: 0.60; } 23% { opacity: 0.06; } 40% { opacity: 0.39; }
+    49% { opacity: 0.12; } 66% { opacity: 0.57; } 77% { opacity: 0.18; } 88% { opacity: 0.36; } 100% { opacity: 0.18; } }
   @keyframes ol-dip { 0%, 100% { opacity: 0; } 18% { opacity: .75; } 30% { opacity: .15; } 52% { opacity: .8; } 68% { opacity: 0; } 84% { opacity: .5; } }
   @media (prefers-reduced-motion: reduce) { .ol-banner > span { animation: none !important; opacity: 0; } }
 </style>
