@@ -14,7 +14,7 @@
      Light sweeps smoothly from left to right and reveals the suppressors; the camera slowly zooms in.
      Only the photo's own pixels. 8 s loop, CSS only. */
   .ol-banner { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
-  .ol-cam { position: absolute; inset: 0; transform-origin: 68% 12%; animation: ol-zoom 8s ease-in-out infinite; will-change: transform; }
+  .ol-cam { position: absolute; inset: 0; transform-origin: 68% 12%; animation: ol-zoom 14s ease-in-out infinite alternate; will-change: transform; }
   .ol-cam > span { position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; }
   .ol-dark { background-image: url(bg-dark.jpg); }
   .ol-lit  { background-image: url(bg.jpg);
@@ -29,12 +29,10 @@
     80%     { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 1; }
     96%     { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 0; }
     96.1%, 100% { -webkit-mask-position: 52% 0; mask-position: 52% 0; opacity: 0; } }
-  /* camera pans left -> right while zooming in and back out; returns while the scene is dark */
+  /* camera: slow, endless glide left <-> right with a gentle zoom; runs back and forth (alternate), never jumps */
   @keyframes ol-zoom {
-    0%   { transform: scale(1.04) translate(2%, 0); }
-    45%  { transform: scale(1.24) translate(0%, 0); }
-    90%  { transform: scale(1.06) translate(-2%, 0); }
-    100% { transform: scale(1.04) translate(2%, 0); } }
+    from { transform: scale(1.04) translate(2.5%, 0); }
+    to   { transform: scale(1.13) translate(-2.5%, 0); } }
   @media (prefers-reduced-motion: reduce) { .ol-cam, .ol-lit { animation: none; } .ol-lit { -webkit-mask: none; mask: none; } }
 </style>
 </head>
