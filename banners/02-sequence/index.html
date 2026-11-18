@@ -14,7 +14,7 @@
      Light sweeps smoothly from left to right and reveals the suppressors; the camera slowly zooms in.
      Only the photo's own pixels. 8 s loop, CSS only. */
   .ol-banner { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
-  .ol-cam { position: absolute; inset: 0; transform-origin: 68% 40%; animation: ol-zoom 6.4s linear infinite; will-change: transform; }
+  .ol-cam { position: absolute; inset: 0; transform-origin: 68% 40%; animation: ol-zoom 25.6s linear infinite; will-change: transform; }
   .ol-cam > span { position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; }
   .ol-dark { background-image: url(bg-dark.jpg); }
   .ol-lit  { background-image: url(bg.jpg);
@@ -31,12 +31,22 @@
   /* from the 2nd cycle on the scene only dims partly (never back to full dark) */
   .ol-floor { background-image: url(bg.jpg); opacity: 0; animation: ol-floor 1.6s ease-in-out 4.7s forwards; }
   @keyframes ol-floor { to { opacity: .35; } }
-  /* camera: zooms in only while the suppressors appear (in step with the light), eases back during the dim */
+  /* camera: zooms in a little with every reveal and holds while the scene dims; it never zooms out (4 steps, then a quick reset in full dark) */
   @keyframes ol-zoom {
-    0%   { transform: scale(1);    animation-timing-function: cubic-bezier(.3,0,.5,1); }
-    74%  { transform: scale(1.08); animation-timing-function: ease-in-out; }
-    100% { transform: scale(1); } }
-  @media (prefers-reduced-motion: reduce) { .ol-cam, .ol-lit, .ol-floor { animation: none; } .ol-lit { -webkit-mask: none; mask: none; } }
+    0%     { transform: scale(1.00); animation-timing-function: cubic-bezier(.3,0,.5,1); }
+    18.5%  { transform: scale(1.03); animation-timing-function: linear; }
+    25%    { transform: scale(1.03); animation-timing-function: cubic-bezier(.3,0,.5,1); }
+    43.5%  { transform: scale(1.06); animation-timing-function: linear; }
+    50%    { transform: scale(1.06); animation-timing-function: cubic-bezier(.3,0,.5,1); }
+    68.5%  { transform: scale(1.09); animation-timing-function: linear; }
+    75%    { transform: scale(1.09); animation-timing-function: cubic-bezier(.3,0,.5,1); }
+    93.5%  { transform: scale(1.12); animation-timing-function: linear; }
+    96.9%  { transform: scale(1.12); }
+    97%, 100% { transform: scale(1.00); } }
+  /* every 4th cycle the scene goes fully dark for a moment, so the camera can reset unseen */
+  .ol-black { position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none; animation: ol-black 25.6s linear infinite; }
+  @keyframes ol-black { 0%, 93.5% { opacity: 0; } 96.5%, 97.5% { opacity: 1; } 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .ol-cam, .ol-lit, .ol-floor, .ol-black { animation: none; } .ol-lit { -webkit-mask: none; mask: none; } }
 </style>
 </head>
 <body>
@@ -44,6 +54,7 @@
   <!-- BANNER START: copy from here into BigCommerce (together with the <style> block above) -->
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
     <span class="ol-cam"><span class="ol-dark"></span><span class="ol-floor"></span><span class="ol-lit"></span></span>
+    <span class="ol-black"></span>
   </a>
   <!-- BANNER END -->
 </div>
