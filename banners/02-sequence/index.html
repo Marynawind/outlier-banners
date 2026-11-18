@@ -14,41 +14,34 @@
      Light sweeps smoothly from left to right and reveals the suppressors; the camera slowly zooms in.
      Only the photo's own pixels. 8 s loop, CSS only. */
   .ol-banner { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
-  .ol-cam { position: absolute; inset: 0; transform-origin: 68% 30%; animation: ol-zoom 6.5s ease-in-out infinite; will-change: transform; }
+  .ol-cam { position: absolute; inset: 0; transform-origin: 68% 30%; animation: ol-zoom 16s ease-in-out infinite alternate; will-change: transform; }
   .ol-cam > span { position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; }
   .ol-dark { background-image: url(bg-dark.jpg); }
   .ol-lit  { background-image: url(bg.jpg);
     -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 45%, transparent 55%, transparent 100%);
             mask-image: linear-gradient(90deg, #000 0%, #000 45%, transparent 55%, transparent 100%);
     -webkit-mask-size: 300% 100%; mask-size: 300% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-    animation: ol-reveal 2.9s cubic-bezier(.3,0,.5,1) forwards; }
+    animation: ol-reveal 7s linear infinite; }
   /* reveal: soft light edge travels left -> right (0–55%), short hold, quick fade back to dark */
   @keyframes ol-reveal {
-    from { -webkit-mask-position: 52% 0; mask-position: 52% 0; }
-    to   { -webkit-mask-position: 24% 0; mask-position: 24% 0; } }
-  /* after the first reveal the suppressors stay lit; a soft band of light keeps flowing over them */
-  .ol-shine { background-image: url(bg.jpg); mix-blend-mode: screen; opacity: 0; filter: brightness(1.8);
-    -webkit-mask-image: url(objects.png), linear-gradient(100deg, transparent 0%, transparent 42%, #000 50%, transparent 58%, transparent 100%);
-            mask-image: url(objects.png), linear-gradient(100deg, transparent 0%, transparent 42%, #000 50%, transparent 58%, transparent 100%);
-    -webkit-mask-size: 100% 100%, 300% 100%; mask-size: 100% 100%, 300% 100%;
-    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-    -webkit-mask-composite: source-in; mask-composite: intersect;
-    animation: ol-shine 6.5s ease-in-out 6.5s infinite; }
-  @keyframes ol-shine {
-    0%        { -webkit-mask-position: 0 0, 62% 0; mask-position: 0 0, 62% 0; opacity: .9; }
-    60%, 100% { -webkit-mask-position: 0 0, 18% 0; mask-position: 0 0, 18% 0; opacity: .9; } }
-  /* camera: gentle zoom only, in step with the light: pushes in while the light passes, eases back, 6.5 s cycle */
-  @keyframes ol-zoom {
-    0%, 100% { transform: scale(1.02); }
-    60%      { transform: scale(1.09); } }
-  @media (prefers-reduced-motion: reduce) { .ol-cam, .ol-lit, .ol-shine { animation: none; } .ol-lit { -webkit-mask: none; mask: none; } }
+    0%     { -webkit-mask-position: 52% 0; mask-position: 52% 0; opacity: 1; animation-timing-function: cubic-bezier(.3,0,.5,1); }
+    41.4%  { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 1; }
+    74%    { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 1; }
+    94%    { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 0; }
+    94.1%, 100% { -webkit-mask-position: 52% 0; mask-position: 52% 0; opacity: 0; } }
+  /* from the 2nd cycle on the scene only dims partly (never back to full dark) */
+  .ol-floor { background-image: url(bg.jpg); opacity: 0; animation: ol-floor 1.4s ease-in-out 5.2s forwards; }
+  @keyframes ol-floor { to { opacity: .35; } }
+  /* camera: very slow, light zoom in and out (16 s each way) */
+  @keyframes ol-zoom { from { transform: scale(1); } to { transform: scale(1.04); } }
+  @media (prefers-reduced-motion: reduce) { .ol-cam, .ol-lit, .ol-floor { animation: none; } .ol-lit { -webkit-mask: none; mask: none; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <!-- BANNER START: copy from here into BigCommerce (together with the <style> block above) -->
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
-    <span class="ol-cam"><span class="ol-dark"></span><span class="ol-lit"></span><span class="ol-shine"></span></span>
+    <span class="ol-cam"><span class="ol-dark"></span><span class="ol-floor"></span><span class="ol-lit"></span></span>
   </a>
   <!-- BANNER END -->
 </div>

@@ -5,7 +5,7 @@ Animated banner variants for the Outlier store (BigCommerce).
 | # | Banner | Effect |
 |---|--------|--------|
 | 01 | [Red / blue glow](banners/01-smoke-glow/) | 16:9. The photo’s own blue and red light flickers chaotically across the background and on the suppressors, the smoke rolls closer and farther, and a low mist creeps across the floor. Colour and saturation stay within the original photo. No added colours. CSS only. |
-| 02 | [Suppressors reveal](banners/02-sequence/) | 16:9, from photo 9645. A soft light edge sweeps from left to right and reveals the suppressors with their reflections, once; after that they stay lit and a slow soft band of light flows over them every 6.5 s; the camera gently zooms in and back in step with the light (no side-to-side). CSS only. |
+| 02 | [Suppressors reveal](banners/02-sequence/) | 16:9, from photo 9645. A soft light edge sweeps from left to right and reveals the suppressors one after another; then they dim partly (not to full dark) and the same sweep repeats at the same speed, every 7 s. Very slow, light camera zoom (16 s in, 16 s out). CSS only. |
 | 03 | [Roll-in](banners/03-roll-in/) | 16:9 MP4 (9.2 s loop, 1.6 MB), from photo 9682 and the 3D model (colour-matched to the photo). The suppressor rolls in from the far, dark end of the floor (~3.5 turns), grows and brightens, and stops in the photo pose. No dissolve. |
 
 ## Using a banner in BigCommerce
