@@ -24,20 +24,25 @@
   .t3 { --m: url(tw3.png); --d: 7.4s; --dl: -5.0s; } .t4 { --m: url(tw4.png); --d: 10.2s; --dl: -1.2s; }
   .t5 { --m: url(tw5.png); --d: 5.8s; --dl: -3.8s; } .t6 { --m: url(tw6.png); --d: 9.4s; --dl: -6.6s; }
   .t7 { --m: url(tw7.png); --d: 6.8s; --dl: -4.4s; } .t8 { --m: url(tw8.png); --d: 11.2s; --dl: -8.2s; }
-  /* the copper top highlight slides over the curved body, as if the light source moved:
-     a copy of the photo's own highlight glides down and back, the original spot dims as it leaves; clipped to the suppressors */
-  .ol-banner > span.ol-hl { background: none; opacity: 1; mix-blend-mode: normal;
-    -webkit-mask: url(objects.png) center / 100% 100% no-repeat; mask: url(objects.png) center / 100% 100% no-repeat; }
-  .ol-hl > i { position: absolute; inset: 0; background: url(bg.jpg) center / cover no-repeat; filter: saturate(1.35) brightness(1.1) blur(1.2px);
-    -webkit-mask: url(rim.png) center / 100% 100% no-repeat; mask: url(rim.png) center / 100% 100% no-repeat;
-    animation: ol-slide 6s ease-in-out infinite alternate; will-change: transform; }
-  @keyframes ol-slide { from { transform: translate(0,0); } to { transform: translate(0.25%, 0.9%); } }
+  /* the photo's own copper rim light slowly brightens as a soft glow travels along it (no added shapes) */
+  .ol-banner > span.ol-rim { filter: saturate(2.2) brightness(1.35); mix-blend-mode: normal; opacity: 1;
+    -webkit-mask-image: url(rim.png), linear-gradient(180deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
+            mask-image: url(rim.png), linear-gradient(180deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
+    -webkit-mask-size: 100% 100%, 100% 300%; mask-size: 100% 100%, 100% 300%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-composite: source-in; mask-composite: intersect;
+    animation: ol-rim 6s ease-in-out infinite alternate; }
+  /* the whole top highlight gently breathes */
+  .ol-banner > span.ol-rimglow { filter: saturate(2) brightness(1.2); mix-blend-mode: normal; -webkit-mask: url(rim.png) center / 100% 100% no-repeat; mask: url(rim.png) center / 100% 100% no-repeat;
+    animation: ol-breathe2 5s ease-in-out infinite; }
+  @keyframes ol-breathe2 { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+  /* light dip of the highlight in between */
   .ol-banner > span.ol-rimdark { background: #000; -webkit-mask: url(rim.png) center / 100% 100% no-repeat; mask: url(rim.png) center / 100% 100% no-repeat;
-    animation: ol-dim3 6s ease-in-out infinite alternate; }
-  @keyframes ol-dim3 { from { opacity: 0; } to { opacity: .65; } }
+    animation: ol-dim2 5s ease-in-out infinite; }
+  @keyframes ol-dim2 { 0%, 100% { opacity: .25; } 40%, 60% { opacity: 0; } }
+  @keyframes ol-rim { from { -webkit-mask-position: 0 0, 0 70%; mask-position: 0 0, 0 70%; } to { -webkit-mask-position: 0 0, 0 30%; mask-position: 0 0, 0 30%; } }
   @keyframes ol-twinkle { 0%, 100% { opacity: 0; } 25% { opacity: .2; } 45% { opacity: 1; } 60% { opacity: .3; } 80% { opacity: .8; } }
   @keyframes ol-sparkle { 0%, 100% { opacity: .1; } 30% { opacity: 1; } 50% { opacity: .45; } 70% { opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { .ol-banner > span { animation: none; } .ol-banner > span.ol-tw, .ol-banner > span.ol-rimdark { opacity: 0; } .ol-hl > i { animation: none; } .ol-banner > span.ol-glint { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .ol-banner > span { animation: none; } .ol-banner > span.ol-tw, .ol-banner > span.ol-rim, .ol-banner > span.ol-rimglow, .ol-banner > span.ol-rimdark { opacity: 0; } .ol-banner > span.ol-glint { opacity: 0; } }
 </style>
 </head>
 <body>
@@ -46,7 +51,7 @@
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
     <span class="ol-tw t1"></span><span class="ol-tw t2"></span><span class="ol-tw t3"></span><span class="ol-tw t4"></span>
     <span class="ol-tw t5"></span><span class="ol-tw t6"></span><span class="ol-tw t7"></span><span class="ol-tw t8"></span>
-    <span class="ol-rimdark"></span><span class="ol-hl"><i></i></span>
+    <span class="ol-rimdark"></span><span class="ol-rimglow"></span><span class="ol-rim"></span>
   </a>
   <!-- BANNER END -->
 </div>
