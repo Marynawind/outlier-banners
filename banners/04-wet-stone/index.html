@@ -11,7 +11,7 @@
   .wrap { max-width: 1600px; margin: 0 auto; padding: 24px 16px; }
 
   /* ===== banner 16:9 =====
-     Glints on the wet stone shimmer in three zones; a warm beam of light slowly crosses the suppressors and the wet stone.
+     Glints on the wet stone shimmer in three zones; soft warm rays of light sway and cross, lighting the suppressors and the wet stone.
      Light colour taken from the photo's warm rim light. CSS only. */
   .ol-banner { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden;
     background: #000 url(bg.jpg) center / cover no-repeat; }
@@ -22,22 +22,23 @@
   .g2 { --m: url(glint2.png); animation: ol-sparkle 4.3s ease-in-out -1.6s infinite; }
   .g3 { --m: url(glint3.png); animation: ol-sparkle 3.1s ease-in-out -0.8s infinite; }
   @keyframes ol-sparkle { 0%, 100% { opacity: 0; } 20% { opacity: .8; } 35% { opacity: .15; } 55% { opacity: .95; } 75% { opacity: .05; } }
-  /* beam over the suppressors */
-  .ol-banner > span.ol-beam { background: linear-gradient(#ffb877,#ffb877); opacity: .5;
-    -webkit-mask-image: url(objects.png), linear-gradient(105deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
-            mask-image: url(objects.png), linear-gradient(105deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
-    -webkit-mask-size: 100% 100%, 300% 100%; mask-size: 100% 100%, 300% 100%;
-    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-    -webkit-mask-composite: source-in; mask-composite: intersect;
-    animation: ol-beam 6s ease-in-out infinite; }
-  /* the same beam also runs across the wet stone, in step with the suppressors */
-  .ol-banner > span.ol-beam.on-stone { opacity: .6;
-    -webkit-mask-image: url(stone.png), linear-gradient(105deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
-            mask-image: url(stone.png), linear-gradient(105deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%); }
-  @keyframes ol-beam {
-    0%        { -webkit-mask-position: 0 0, 100% 0; mask-position: 0 0, 100% 0; }
-    70%, 100% { -webkit-mask-position: 0 0, 0% 0;   mask-position: 0 0, 0% 0; } }
-  @media (prefers-reduced-motion: reduce) { .ol-banner > span { animation: none; opacity: 0; } }
+  /* play of light: several soft warm rays fall from above, sway and cross at different speeds.
+     A faint copy shows in the air; a stronger copy lands on the suppressors and the wet stone. */
+  .ol-banner > span.ol-rays { opacity: 1; background: none; mix-blend-mode: screen; }
+  .ol-banner > span.ol-rays.air { opacity: .16; }
+  .ol-banner > span.ol-rays.hit { opacity: .75; -webkit-mask: url(lit.png) center / 100% 100% no-repeat; mask: url(lit.png) center / 100% 100% no-repeat; }
+  .ol-rays > i { position: absolute; top: -40%; left: var(--x); width: var(--w); height: 180%;
+    background: linear-gradient(90deg, transparent, rgba(255,184,119,.9) 45%, rgba(255,214,170,1) 50%, rgba(255,184,119,.9) 55%, transparent);
+    filter: blur(var(--b)); transform-origin: 50% 0; transform: rotate(var(--r));
+    animation: ol-sway var(--d) ease-in-out var(--dl) infinite alternate, ol-flick var(--f) ease-in-out var(--dl) infinite; }
+  .ol-rays > i:nth-child(1) { --x: 18%; --w: 7%;  --b: 18px; --r: 24deg; --d: 7s;  --f: 5.3s; --dl: 0s; }
+  .ol-rays > i:nth-child(2) { --x: 40%; --w: 4%;  --b: 12px; --r: 16deg; --d: 9s;  --f: 4.1s; --dl: -3s; }
+  .ol-rays > i:nth-child(3) { --x: 58%; --w: 9%;  --b: 24px; --r: 30deg; --d: 8s;  --f: 6.2s; --dl: -5s; }
+  .ol-rays > i:nth-child(4) { --x: 76%; --w: 5%;  --b: 14px; --r: 12deg; --d: 10s; --f: 4.7s; --dl: -2s; }
+  .ol-rays > i:nth-child(5) { --x: 92%; --w: 6%;  --b: 20px; --r: 34deg; --d: 11s; --f: 5.8s; --dl: -7s; }
+  @keyframes ol-sway  { from { transform: rotate(var(--r)) translateX(-60%); } to { transform: rotate(calc(var(--r) - 14deg)) translateX(60%); } }
+  @keyframes ol-flick { 0%, 100% { opacity: .35; } 30% { opacity: 1; } 55% { opacity: .55; } 80% { opacity: .9; } }
+  @media (prefers-reduced-motion: reduce) { .ol-banner > span, .ol-rays > i { animation: none; } .ol-banner > span.ol-glint { opacity: 0; } }
 </style>
 </head>
 <body>
@@ -45,7 +46,8 @@
   <!-- BANNER START: copy from here into BigCommerce (together with the <style> block above) -->
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
     <span class="ol-glint g1"></span><span class="ol-glint g2"></span><span class="ol-glint g3"></span>
-    <span class="ol-beam on-stone"></span><span class="ol-beam"></span>
+    <span class="ol-rays air"><i></i><i></i><i></i><i></i><i></i></span>
+    <span class="ol-rays hit"><i></i><i></i><i></i><i></i><i></i></span>
   </a>
   <!-- BANNER END -->
 </div>
