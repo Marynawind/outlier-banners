@@ -25,14 +25,14 @@
   .t5 { --m: url(tw5.png); --d: 5.8s; --dl: -3.8s; } .t6 { --m: url(tw6.png); --d: 9.4s; --dl: -6.6s; }
   .t7 { --m: url(tw7.png); --d: 6.8s; --dl: -4.4s; } .t8 { --m: url(tw8.png); --d: 11.2s; --dl: -8.2s; }
   /* the photo's own copper rim light slowly brightens as a soft glow travels along it (no added shapes) */
-  .ol-banner > span.ol-rim { filter: saturate(2.2) brightness(1.35); mix-blend-mode: normal; opacity: 1;
+  .ol-banner > span.ol-rim { filter: saturate(1.5) brightness(1.2); mix-blend-mode: normal; opacity: 1;
     -webkit-mask-image: url(rim.png), linear-gradient(90deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
             mask-image: url(rim.png), linear-gradient(90deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
     -webkit-mask-size: 100% 100%, 300% 100%; mask-size: 100% 100%, 300% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
     -webkit-mask-composite: source-in; mask-composite: intersect;
     animation: ol-rim 6s ease-in-out infinite alternate; }
   /* the whole top highlight gently breathes */
-  .ol-banner > span.ol-rimglow { filter: saturate(2) brightness(1.2); mix-blend-mode: normal; -webkit-mask: url(rim.png) center / 100% 100% no-repeat; mask: url(rim.png) center / 100% 100% no-repeat;
+  .ol-banner > span.ol-rimglow { filter: saturate(1.4) brightness(1.1); mix-blend-mode: normal; -webkit-mask: url(rim.png) center / 100% 100% no-repeat; mask: url(rim.png) center / 100% 100% no-repeat;
     animation: ol-breathe2 5s ease-in-out infinite; }
   @keyframes ol-breathe2 { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
   /* light dip of the highlight in between */
@@ -49,9 +49,9 @@
   /* edge grows downward, holds, then fades (never shrinks back up) */
   @keyframes ol-spill {
     0%   { opacity: 0;  -webkit-mask-position: 0 100%; mask-position: 0 100%; }
-    15%  { opacity: .9; }
-    65%  { opacity: .9; -webkit-mask-position: 0 0%; mask-position: 0 0%; }
-    85%  { opacity: .9; -webkit-mask-position: 0 0%; mask-position: 0 0%; }
+    15%  { opacity: .55; }
+    65%  { opacity: .55; -webkit-mask-position: 0 0%; mask-position: 0 0%; }
+    85%  { opacity: .55; -webkit-mask-position: 0 0%; mask-position: 0 0%; }
     100% { opacity: 0;  -webkit-mask-position: 0 0%; mask-position: 0 0%; } }
   @keyframes ol-twinkle { 0%, 100% { opacity: 0; } 25% { opacity: .2; } 45% { opacity: 1; } 60% { opacity: .3; } 80% { opacity: .8; } }
   @keyframes ol-sparkle { 0%, 100% { opacity: .1; } 30% { opacity: 1; } 50% { opacity: .45; } 70% { opacity: 1; } }
