@@ -21,7 +21,7 @@
   .g1 { --m: url(glint1.png); animation: ol-sparkle 7.4s ease-in-out infinite; }
   .g2 { --m: url(glint2.png); animation: ol-sparkle 8.6s ease-in-out -1.6s infinite; }
   .g3 { --m: url(glint3.png); animation: ol-sparkle 6.8s ease-in-out -0.8s infinite; }
-  @keyframes ol-sparkle { 0%, 100% { opacity: 0; } 30% { opacity: .75; } 50% { opacity: .35; } 70% { opacity: .9; } }
+  @keyframes ol-sparkle { 0%, 100% { opacity: .1; } 30% { opacity: 1; } 50% { opacity: .45; } 70% { opacity: 1; } }
   /* diffused play of light: large soft patches of warm light drift slowly and overlap,
      brightening the suppressors and the wet stone where they pass; a very faint glow in the air. */
   .ol-banner > span.ol-light { opacity: 1; background: none; mix-blend-mode: screen; }
@@ -37,7 +37,7 @@
   @keyframes ol-drift   { from { transform: translate(-50%,-50%); } to { transform: translate(calc(-50% + var(--mx)), calc(-50% + var(--my))); } }
   @keyframes ol-breathe { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
   /* suppressors keep the photo's look; only their own highlights (rim light, ring edges) sparkle like sun glints */
-  .ol-banner > span.ol-shine { background-image: url(bg.jpg); filter: brightness(1.9); mix-blend-mode: screen;
+  .ol-banner > span.ol-shine { background-image: url(bg.jpg); filter: brightness(3); mix-blend-mode: screen;
     -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat; }
   .s1 { --m: url(shine1.png); animation: ol-sparkle 9.2s ease-in-out -1s infinite; }
   .s2 { --m: url(shine2.png); animation: ol-sparkle 10.4s ease-in-out -3s infinite; }
