@@ -14,7 +14,7 @@
      Light sweeps smoothly from left to right and reveals the suppressors; the camera slowly zooms in.
      Only the photo's own pixels. 8 s loop, CSS only. */
   .ol-banner { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
-  .ol-cam { position: absolute; inset: 0; transform-origin: 68% 40%; animation: ol-zoom 18s cubic-bezier(.45,0,.55,1) infinite; will-change: transform; }
+  .ol-cam { position: absolute; inset: 0; transform-origin: 68% 40%; animation: ol-zoom 6.4s linear infinite; will-change: transform; }
   .ol-cam > span { position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; }
   .ol-dark { background-image: url(bg-dark.jpg); }
   .ol-lit  { background-image: url(bg.jpg);
@@ -31,10 +31,11 @@
   /* from the 2nd cycle on the scene only dims partly (never back to full dark) */
   .ol-floor { background-image: url(bg.jpg); opacity: 0; animation: ol-floor 1.6s ease-in-out 4.7s forwards; }
   @keyframes ol-floor { to { opacity: .35; } }
-  /* camera: calm product-ad move — slow dolly in with a gentle drift across, then back out (18 s loop) */
+  /* camera: zooms in only while the suppressors appear (in step with the light), eases back during the dim */
   @keyframes ol-zoom {
-    0%, 100% { transform: scale(1.01) translate(1.6%, 0.4%) rotate(0deg); }
-    50%      { transform: scale(1.11) translate(-1.6%, -0.4%) rotate(-0.25deg); } }
+    0%   { transform: scale(1);    animation-timing-function: cubic-bezier(.3,0,.5,1); }
+    74%  { transform: scale(1.08); animation-timing-function: ease-in-out; }
+    100% { transform: scale(1); } }
   @media (prefers-reduced-motion: reduce) { .ol-cam, .ol-lit, .ol-floor { animation: none; } .ol-lit { -webkit-mask: none; mask: none; } }
 </style>
 </head>
