@@ -12,29 +12,29 @@
 
   /* ===== banner 16:9 =====
      Light sweeps smoothly from left to right and reveals the suppressors; the camera slowly zooms in.
-     Only the photo's own pixels. 9 s loop, CSS only. */
+     Only the photo's own pixels. 8 s loop, CSS only. */
   .ol-banner { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
-  .ol-cam { position: absolute; inset: 0; transform-origin: 60% 62%; animation: ol-zoom 9s ease-in-out infinite; will-change: transform; }
+  .ol-cam { position: absolute; inset: 0; transform-origin: 68% 12%; animation: ol-zoom 8s ease-in-out infinite; will-change: transform; }
   .ol-cam > span { position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; }
   .ol-dark { background-image: url(bg-dark.jpg); }
   .ol-lit  { background-image: url(bg.jpg);
     -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 45%, transparent 55%, transparent 100%);
             mask-image: linear-gradient(90deg, #000 0%, #000 45%, transparent 55%, transparent 100%);
     -webkit-mask-size: 300% 100%; mask-size: 300% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-    animation: ol-reveal 9s linear infinite; }
+    animation: ol-reveal 8s linear infinite; }
   /* reveal: soft light edge travels left -> right (0–55%), short hold, quick fade back to dark */
   @keyframes ol-reveal {
-    0%      { -webkit-mask-position: 85% 0; mask-position: 85% 0; opacity: 1; animation-timing-function: cubic-bezier(.4,0,.6,1); }
-    55%     { -webkit-mask-position: 15% 0; mask-position: 15% 0; opacity: 1; }
-    74%     { -webkit-mask-position: 15% 0; mask-position: 15% 0; opacity: 1; }
-    88%     { -webkit-mask-position: 15% 0; mask-position: 15% 0; opacity: 0; }
-    88.1%, 100% { -webkit-mask-position: 85% 0; mask-position: 85% 0; opacity: 0; } }
+    0%      { -webkit-mask-position: 52% 0; mask-position: 52% 0; opacity: 1; animation-timing-function: cubic-bezier(.3,0,.5,1); }
+    36%     { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 1; }
+    80%     { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 1; }
+    96%     { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 0; }
+    96.1%, 100% { -webkit-mask-position: 52% 0; mask-position: 52% 0; opacity: 0; } }
   /* camera pans left -> right while zooming in and back out; returns while the scene is dark */
   @keyframes ol-zoom {
-    0%   { transform: scale(1.10) translate(4.5%, 0.5%); }
-    40%  { transform: scale(1.15) translate(0%, 1.5%); }
-    78%  { transform: scale(1.10) translate(-4.5%, 0%); }
-    100% { transform: scale(1.10) translate(4.5%, 0.5%); } }
+    0%   { transform: scale(1.04) translate(2%, 0); }
+    45%  { transform: scale(1.24) translate(0%, 0); }
+    90%  { transform: scale(1.06) translate(-2%, 0); }
+    100% { transform: scale(1.04) translate(2%, 0); } }
   @media (prefers-reduced-motion: reduce) { .ol-cam, .ol-lit { animation: none; } .ol-lit { -webkit-mask: none; mask: none; } }
 </style>
 </head>
