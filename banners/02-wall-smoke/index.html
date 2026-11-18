@@ -41,6 +41,7 @@
   /* glow zones */
   .z-s1 { --m: url(s1.png); } .z-s2 { --m: url(s2.png); } .z-s3 { --m: url(s3.png); }
   .z-s4 { --m: url(s4.png); } .z-s5 { --m: url(s5.png); }
+  .z-s6 { --m: url(s6.png); } .z-s7 { --m: url(s7.png); } .z-obj { --m: url(objglow.png); }
   .z-halo { --m: url(halo.png); } .z-rim { --m: url(rim.png); }
   .ol-lit.z-s1 { animation: ol-flick-a 13.2s linear infinite; }
   .ol-lit.z-s2 { animation: ol-flick-b 18.5s linear -5.1s infinite; }
@@ -51,6 +52,13 @@
   .ol-shade.z-s2 { animation: ol-dip 12.5s linear -3.9s infinite; }
   .ol-shade.z-s4 { animation: ol-dip 13.2s linear -1.4s infinite; }
   .ol-shade.z-s5 { animation: ol-dip 17.5s linear -8.2s infinite; }
+  .ol-lit.z-s6 { animation: ol-flick-c 14.6s linear -6.3s infinite; }
+  .ol-lit.z-s7 { animation: ol-flick-a 17.2s linear -2.8s infinite; }
+  .ol-shade.z-s3 { animation: ol-dip 15.4s linear -6.0s infinite; }
+  .ol-shade.z-s6 { animation: ol-dip 11.9s linear -3.1s infinite; }
+  /* soft glow of the suppressors themselves */
+  .ol-lit.z-obj { animation: ol-breathe 9s ease-in-out infinite; }
+  @keyframes ol-breathe { 0%, 100% { opacity: 0; } 50% { opacity: .22; } }
   .ol-lit.z-halo { animation: ol-flick-c 11.6s linear -4.0s infinite; }
   .ol-lit.z-rim  { animation: ol-flick-a 9.9s linear -0.9s infinite; }
   @keyframes ol-flick-a { 0% { opacity: 0.06; } 9% { opacity: 0.51; } 17% { opacity: 0.21; } 31% { opacity: 0.60; }
@@ -69,10 +77,10 @@
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
     <span class="ol-move m1"><i></i></span><span class="ol-move m2"><i></i></span>
     <span class="ol-move fl"><i></i></span><span class="ol-move fl2"><i></i></span>
-    <span class="ol-shade z-s1"></span><span class="ol-shade z-s2"></span><span class="ol-shade z-s4"></span><span class="ol-shade z-s5"></span>
+    <span class="ol-shade z-s1"></span><span class="ol-shade z-s2"></span><span class="ol-shade z-s3"></span><span class="ol-shade z-s4"></span><span class="ol-shade z-s5"></span><span class="ol-shade z-s6"></span>
     <span class="ol-lit z-s1"></span><span class="ol-lit z-s2"></span><span class="ol-lit z-s3"></span>
-    <span class="ol-lit z-s4"></span><span class="ol-lit z-s5"></span>
-    <span class="ol-lit z-halo"></span><span class="ol-lit z-rim"></span>
+    <span class="ol-lit z-s4"></span><span class="ol-lit z-s5"></span><span class="ol-lit z-s6"></span><span class="ol-lit z-s7"></span>
+    <span class="ol-lit z-obj"></span><span class="ol-lit z-halo"></span><span class="ol-lit z-rim"></span>
   </a>
   <!-- BANNER END -->
 </div>
