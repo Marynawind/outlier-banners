@@ -24,18 +24,17 @@
   .t3 { --m: url(tw3.png); --d: 7.4s; --dl: -5.0s; } .t4 { --m: url(tw4.png); --d: 10.2s; --dl: -1.2s; }
   .t5 { --m: url(tw5.png); --d: 5.8s; --dl: -3.8s; } .t6 { --m: url(tw6.png); --d: 9.4s; --dl: -6.6s; }
   .t7 { --m: url(tw7.png); --d: 6.8s; --dl: -4.4s; } .t8 { --m: url(tw8.png); --d: 11.2s; --dl: -8.2s; }
-  /* star glints with rays on the brightest points of the suppressors' copper rim; the suppressors themselves stay as in the photo */
-  .ol-banner > span.ol-star { position: absolute; inset: auto; background: none; left: var(--x); top: var(--y); width: var(--s); height: var(--s); transform: translate(-50%,-50%) rotate(var(--r));
-    pointer-events: none; mix-blend-mode: screen; opacity: 0; animation: ol-star var(--d) ease-in-out var(--dl) infinite; }
-  .ol-star::before, .ol-star::after { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 2px; margin-top: -1px;
-    background: linear-gradient(90deg, transparent, rgba(255,220,170,.9) 45%, #fff 50%, rgba(255,220,170,.9) 55%, transparent); filter: blur(.4px); }
-  .ol-star::after { transform: rotate(90deg); }
-  .ol-star > i { position: absolute; inset: 35%; border-radius: 50%; background: radial-gradient(closest-side, #fff, rgba(255,200,140,.8) 40%, transparent); }
-  @keyframes ol-star { 0%, 100% { opacity: 0; transform: translate(-50%,-50%) rotate(var(--r)) scale(.4); }
-    45% { opacity: 1; transform: translate(-50%,-50%) rotate(calc(var(--r) + 20deg)) scale(1); } 70% { opacity: .2; } }
+  /* the photo's own copper rim light slowly brightens as a soft glow travels along it (no added shapes) */
+  .ol-banner > span.ol-rim { filter: brightness(1.7); opacity: 1;
+    -webkit-mask-image: url(rim.png), linear-gradient(90deg, transparent 0%, transparent 35%, #000 50%, transparent 65%, transparent 100%);
+            mask-image: url(rim.png), linear-gradient(90deg, transparent 0%, transparent 35%, #000 50%, transparent 65%, transparent 100%);
+    -webkit-mask-size: 100% 100%, 300% 100%; mask-size: 100% 100%, 300% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-composite: source-in; mask-composite: intersect;
+    animation: ol-rim 14s ease-in-out infinite alternate; }
+  @keyframes ol-rim { from { -webkit-mask-position: 0 0, 100% 0; mask-position: 0 0, 100% 0; } to { -webkit-mask-position: 0 0, 0% 0; mask-position: 0 0, 0% 0; } }
   @keyframes ol-twinkle { 0%, 100% { opacity: 0; } 25% { opacity: .2; } 45% { opacity: 1; } 60% { opacity: .3; } 80% { opacity: .8; } }
   @keyframes ol-sparkle { 0%, 100% { opacity: .1; } 30% { opacity: 1; } 50% { opacity: .45; } 70% { opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { .ol-banner > span { animation: none; } .ol-banner > span.ol-tw, .ol-star { opacity: 0; } .ol-banner > span.ol-glint { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .ol-banner > span { animation: none; } .ol-banner > span.ol-tw, .ol-banner > span.ol-rim { opacity: 0; } .ol-banner > span.ol-glint { opacity: 0; } }
 </style>
 </head>
 <body>
@@ -44,12 +43,7 @@
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
     <span class="ol-tw t1"></span><span class="ol-tw t2"></span><span class="ol-tw t3"></span><span class="ol-tw t4"></span>
     <span class="ol-tw t5"></span><span class="ol-tw t6"></span><span class="ol-tw t7"></span><span class="ol-tw t8"></span>
-    <span class="ol-star" style="--x:59.0%;--y:24.2%;--s:6.7vw;--d:11.2s;--dl:0.0s;--r:20deg"><i></i></span>
-    <span class="ol-star" style="--x:51.4%;--y:25.9%;--s:5.4vw;--d:13.6s;--dl:-4.8s;--r:10deg"><i></i></span>
-    <span class="ol-star" style="--x:89.3%;--y:28.9%;--s:6.1vw;--d:12.0s;--dl:-8.8s;--r:25deg"><i></i></span>
-    <span class="ol-star" style="--x:24.0%;--y:32.6%;--s:5.8vw;--d:14.4s;--dl:-3.2s;--r:15deg"><i></i></span>
-    <span class="ol-star" style="--x:77.8%;--y:29.6%;--s:5.1vw;--d:12.8s;--dl:-10.4s;--r:5deg"><i></i></span>
-    <span class="ol-star" style="--x:61.1%;--y:42.5%;--s:4.2vw;--d:15.2s;--dl:-6.4s;--r:30deg"><i></i></span>
+    <span class="ol-rim"></span>
   </a>
   <!-- BANNER END -->
 </div>
