@@ -20,13 +20,27 @@
   .ol-lit   { background: url(bg.jpg) center / cover no-repeat; mix-blend-mode: screen; }
   .ol-shade { background: #000; }
 
-  /* moving smoke: the photo's own smoke slowly zooms in and out (comes closer / moves away) inside the smoke area.
-     Lighten blend never adds colour or saturation beyond what the photo already has. */
-  .ol-drift { background: url(smoke-tex.jpg) no-repeat; mix-blend-mode: lighten; --m: url(smoke.png); opacity: .8; }
-  .ol-drift.d1 { background-position: 8% 45%;  animation: ol-zoom1 14s ease-in-out infinite alternate; }
-  .ol-drift.d2 { background-position: 92% 45%; animation: ol-zoom2 17s ease-in-out infinite alternate; }
-  @keyframes ol-zoom1 { from { background-size: 100% 100%; } to { background-size: 135% 135%; } }
-  @keyframes ol-zoom2 { from { background-size: 138% 138%; } to { background-size: 100% 100%; } }
+  /* moving smoke: outer layer keeps a fixed mask (smoke area only), the inner copy of the photo's
+     own smoke zooms and slides inside it, so the clouds visibly roll closer / farther.
+     Only the photo's own pixels are used, so no colour or saturation is added. */
+  .ol-move { overflow: hidden; }
+  .ol-move > i { position: absolute; inset: 0; background: url(smoke-tex.jpg) center / cover no-repeat;
+    will-change: transform; }
+  .ol-move.m1 { --m: url(smoke.png); opacity: .7; }
+  .ol-move.m1 > i { transform-origin: 10% 45%; animation: ol-roll1 11s ease-in-out infinite alternate; }
+  .ol-move.m2 { --m: url(smoke.png); opacity: .5; }
+  .ol-move.m2 > i { transform-origin: 90% 45%; animation: ol-roll2 14s ease-in-out infinite alternate; }
+  @keyframes ol-roll1 { from { transform: scale(1) translate(0,0); } to { transform: scale(1.35) translate(4%, -3%); } }
+  @keyframes ol-roll2 { from { transform: scale(1.4) translate(-4%, 2%); } to { transform: scale(1) translate(0,0); } }
+  /* low mist creeping across the floor */
+  .ol-move.fl { --m: url(floor.png); opacity: .75; }
+  .ol-move.fl > i { top: 66%; bottom: -4%; left: -30%; right: -30%; background: url(floor-mist.png) center / 100% 100% no-repeat;
+    animation: ol-creep 16s ease-in-out infinite alternate; }
+  .ol-move.fl2 { --m: url(floor.png); opacity: .5; }
+  .ol-move.fl2 > i { top: 70%; bottom: -6%; left: -30%; right: -30%; background: url(floor-mist.png) center / 100% 100% no-repeat;
+    animation: ol-creep2 21s ease-in-out infinite alternate; }
+  @keyframes ol-creep  { from { transform: translateX(-12%) scale(1); }    to { transform: translateX(12%) scale(1.2); } }
+  @keyframes ol-creep2 { from { transform: translateX(9%) scale(1.15); } to { transform: translateX(-9%) scale(1); } }
   .z-b1 { --m: url(b1.png); } .z-b2 { --m: url(b2.png); } .z-b3 { --m: url(b3.png); }
   .z-r1 { --m: url(r1.png); } .z-r2 { --m: url(r2.png); } .z-r3 { --m: url(r3.png); }
   .z-ob { --m: url(ob.png); } .z-or { --m: url(or.png); }
@@ -62,7 +76,8 @@
 <div class="wrap">
   <!-- BANNER START: copy from here into BigCommerce (together with the <style> block above) -->
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
-    <span class="ol-drift d1"></span><span class="ol-drift d2"></span>
+    <span class="ol-move m1"><i></i></span><span class="ol-move m2"><i></i></span>
+    <span class="ol-move fl"><i></i></span><span class="ol-move fl2"><i></i></span>
     <span class="ol-shade z-b1"></span><span class="ol-shade z-b2"></span><span class="ol-shade z-b3"></span>
     <span class="ol-shade z-r1"></span><span class="ol-shade z-r2"></span><span class="ol-shade z-r3"></span>
     <span class="ol-lit z-b1"></span><span class="ol-lit z-b2"></span><span class="ol-lit z-b3"></span>
