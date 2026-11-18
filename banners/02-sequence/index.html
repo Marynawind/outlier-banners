@@ -34,14 +34,14 @@
   /* camera: zooms in a little with every reveal and holds while the scene dims; it never zooms out (4 steps, then a quick reset in full dark) */
   @keyframes ol-zoom {
     0%     { transform: scale(1.00); animation-timing-function: cubic-bezier(.3,0,.5,1); }
-    18.5%  { transform: scale(1.03); animation-timing-function: linear; }
-    25%    { transform: scale(1.03); animation-timing-function: cubic-bezier(.3,0,.5,1); }
-    43.5%  { transform: scale(1.06); animation-timing-function: linear; }
-    50%    { transform: scale(1.06); animation-timing-function: cubic-bezier(.3,0,.5,1); }
-    68.5%  { transform: scale(1.09); animation-timing-function: linear; }
-    75%    { transform: scale(1.09); animation-timing-function: cubic-bezier(.3,0,.5,1); }
-    93.5%  { transform: scale(1.12); animation-timing-function: linear; }
-    96.9%  { transform: scale(1.12); }
+    18.5%  { transform: scale(1.05); animation-timing-function: linear; }
+    25%    { transform: scale(1.05); animation-timing-function: cubic-bezier(.3,0,.5,1); }
+    43.5%  { transform: scale(1.10); animation-timing-function: linear; }
+    50%    { transform: scale(1.10); animation-timing-function: cubic-bezier(.3,0,.5,1); }
+    68.5%  { transform: scale(1.15); animation-timing-function: linear; }
+    75%    { transform: scale(1.15); animation-timing-function: cubic-bezier(.3,0,.5,1); }
+    93.5%  { transform: scale(1.20); animation-timing-function: linear; }
+    96.9%  { transform: scale(1.20); }
     97%, 100% { transform: scale(1.00); } }
   /* every 4th cycle the scene goes fully dark for a moment, so the camera can reset unseen */
   .ol-black { position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none; animation: ol-black 25.6s linear infinite; }
