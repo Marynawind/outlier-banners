@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smoke Glow Banner</title>
+<style>
+  :root { --bg: #050507; --fg: #ededeb; --muted: #8a8d93; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 1600px; margin: 0 auto; padding: 24px 16px; }
+  .note { color: var(--muted); font-size: 13px; margin-top: 12px; }
+
+  /* ===== banner ===== */
+  .ol-banner { position: relative; display: block; width: 100%; aspect-ratio: 2400 / 1340;
+    overflow: hidden; background: #000 url(bg.jpg) center / cover no-repeat; }
+  .ol-banner > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ol-smoke { position: absolute; inset: -6%; width: 112%; height: 112%;
+    background: center / 100% 100% no-repeat; mix-blend-mode: screen; pointer-events: none;
+    will-change: transform, opacity; }
+  .ol-smoke.blue { background-image: url(smoke-blue.png); animation: ol-drift-l 14s ease-in-out infinite alternate,
+    ol-pulse 5s ease-in-out infinite; }
+  .ol-smoke.red  { background-image: url(smoke-red.png);  animation: ol-drift-r 16s ease-in-out infinite alternate,
+    ol-pulse 6s ease-in-out -2s infinite; }
+  .ol-glow { position: absolute; inset: 0; mix-blend-mode: screen; pointer-events: none; }
+  .ol-glow.blue { background: radial-gradient(40% 55% at 6% 45%, rgba(40,90,255,.55), transparent 70%);
+    animation: ol-breathe 4.5s ease-in-out infinite; }
+  .ol-glow.red  { background: radial-gradient(40% 55% at 96% 52%, rgba(255,30,30,.5), transparent 70%);
+    animation: ol-breathe 5.5s ease-in-out -1.5s infinite; }
+
+  @keyframes ol-drift-l { from { transform: translate(-2%, 1%) scale(1); } to { transform: translate(2.5%, -1.5%) scale(1.04); } }
+  @keyframes ol-drift-r { from { transform: translate(2%, -1%) scale(1.03); } to { transform: translate(-2.5%, 1.5%) scale(1); } }
+  @keyframes ol-pulse   { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+  @keyframes ol-breathe { 0%,100% { opacity: .25; } 50% { opacity: .8; } }
+  @media (prefers-reduced-motion: reduce) { .ol-smoke, .ol-glow { animation: none; opacity: .7; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- BANNER START: copy from here into BigCommerce (together with the <style> block above) -->
+  <a class="ol-banner" href="#" aria-label="Outlier suppressors">
+    <span class="ol-smoke blue"></span>
+    <span class="ol-smoke red"></span>
+    <span class="ol-glow blue"></span>
+    <span class="ol-glow red"></span>
+  </a>
+  <!-- BANNER END -->
+  <p class="note">01 · Smoke glow — blue and red smoke drifts and glows, CSS only, no JavaScript. Files: bg.jpg, smoke-blue.png, smoke-red.png.</p>
+</div>
+</body>
+</html>
