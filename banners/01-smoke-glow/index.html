@@ -27,18 +27,18 @@
   .ol-move > i { position: absolute; inset: 0; background: url(smoke-tex.jpg) center / cover no-repeat;
     will-change: transform; }
   .ol-move.m1 { --m: url(smoke.png); opacity: .7; }
-  .ol-move.m1 > i { transform-origin: 10% 45%; animation: ol-roll1 11s ease-in-out infinite alternate; }
+  .ol-move.m1 > i { transform-origin: 10% 45%; animation: ol-roll1 15s ease-in-out infinite alternate; }
   .ol-move.m2 { --m: url(smoke.png); opacity: .5; }
-  .ol-move.m2 > i { transform-origin: 90% 45%; animation: ol-roll2 14s ease-in-out infinite alternate; }
+  .ol-move.m2 > i { transform-origin: 90% 45%; animation: ol-roll2 19s ease-in-out infinite alternate; }
   @keyframes ol-roll1 { from { transform: scale(1) translate(0,0); } to { transform: scale(1.35) translate(4%, -3%); } }
   @keyframes ol-roll2 { from { transform: scale(1.4) translate(-4%, 2%); } to { transform: scale(1) translate(0,0); } }
   /* low mist creeping across the floor */
   .ol-move.fl { --m: url(floor.png); opacity: .75; }
   .ol-move.fl > i { top: 66%; bottom: -4%; left: -30%; right: -30%; background: url(floor-mist.png) center / 100% 100% no-repeat;
-    animation: ol-creep 16s ease-in-out infinite alternate; }
+    animation: ol-creep 22s ease-in-out infinite alternate; }
   .ol-move.fl2 { --m: url(floor.png); opacity: .5; }
   .ol-move.fl2 > i { top: 70%; bottom: -6%; left: -30%; right: -30%; background: url(floor-mist.png) center / 100% 100% no-repeat;
-    animation: ol-creep2 21s ease-in-out infinite alternate; }
+    animation: ol-creep2 28s ease-in-out infinite alternate; }
   @keyframes ol-creep  { from { transform: translateX(-12%) scale(1); }    to { transform: translateX(12%) scale(1.2); } }
   @keyframes ol-creep2 { from { transform: translateX(9%) scale(1.15); } to { transform: translateX(-9%) scale(1); } }
   .z-b1 { --m: url(b1.png); } .z-b2 { --m: url(b2.png); } .z-b3 { --m: url(b3.png); }
