@@ -18,17 +18,16 @@
   .ol-banner > span { position: absolute; inset: 0; pointer-events: none;
     background-image: url(bg.jpg); background-size: cover; background-position: center; mix-blend-mode: screen; opacity: 0; }
   /* water-like sparkle: the photo's own bright specks on the wet stone twinkle in 8 independent groups */
-  .ol-banner > span.ol-tw { filter: brightness(5) sepia(.55) saturate(2); -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat;
+  .ol-banner > span.ol-tw { filter: brightness(3) sepia(.55) saturate(1.8); -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat;
     animation: ol-twinkle var(--d) ease-in-out var(--dl) infinite; }
   .t1 { --m: url(tw1.png); --d: 6.2s; --dl: 0.0s; }    .t2 { --m: url(tw2.png); --d: 8.6s; --dl: -2.4s; }
   .t3 { --m: url(tw3.png); --d: 7.4s; --dl: -5.0s; } .t4 { --m: url(tw4.png); --d: 10.2s; --dl: -1.2s; }
   .t5 { --m: url(tw5.png); --d: 5.8s; --dl: -3.8s; } .t6 { --m: url(tw6.png); --d: 9.4s; --dl: -6.6s; }
   .t7 { --m: url(tw7.png); --d: 6.8s; --dl: -4.4s; } .t8 { --m: url(tw8.png); --d: 11.2s; --dl: -8.2s; }
-  .ol-banner > span.ol-tw.x { animation-duration: calc(var(--d) * .7); animation-delay: calc(var(--dl) - 2.1s); }
   /* the photo's own copper rim light slowly brightens as a soft glow travels along it (no added shapes) */
   .ol-banner > span.ol-rim { filter: saturate(1.9) brightness(1.8); mix-blend-mode: normal; opacity: 1;
-    -webkit-mask-image: url(rim.png), linear-gradient(90deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
-            mask-image: url(rim.png), linear-gradient(90deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
+    -webkit-mask-image: url(rim.png), linear-gradient(90deg, transparent 0%, transparent 43%, #000 50%, transparent 57%, transparent 100%);
+            mask-image: url(rim.png), linear-gradient(90deg, transparent 0%, transparent 43%, #000 50%, transparent 57%, transparent 100%);
     -webkit-mask-size: 100% 100%, 300% 100%; mask-size: 100% 100%, 300% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
     -webkit-mask-composite: source-in; mask-composite: intersect;
     animation: ol-rim 6s ease-in-out infinite alternate; }
@@ -55,9 +54,9 @@
     85%  { opacity: .9; -webkit-mask-position: 0 0%; mask-position: 0 0%; }
     100% { opacity: 0;  -webkit-mask-position: 0 0%; mask-position: 0 0%; } }
   /* warm reflections on the wet stone glow with the same rhythm and colour as the suppressors' top highlight */
-  .ol-banner > span.ol-stoneglow { filter: saturate(2) brightness(2.3); -webkit-mask: url(stoneglow.png) center / 100% 100% no-repeat; mask: url(stoneglow.png) center / 100% 100% no-repeat;
+  .ol-banner > span.ol-stoneglow { filter: saturate(1.6) brightness(1.4); -webkit-mask: url(stoneglow.png) center / 100% 100% no-repeat; mask: url(stoneglow.png) center / 100% 100% no-repeat;
     animation: ol-breathe2 5s ease-in-out infinite; }
-  @keyframes ol-twinkle { 0%, 100% { opacity: 0; } 25% { opacity: .1; } 40% { opacity: 1; } 50% { opacity: .15; } 72% { opacity: 1; } 82% { opacity: .1; } }
+  @keyframes ol-twinkle { 0%, 100% { opacity: 0; } 25% { opacity: .2; } 45% { opacity: 1; } 60% { opacity: .3; } 80% { opacity: .8; } }
   @keyframes ol-sparkle { 0%, 100% { opacity: .1; } 30% { opacity: 1; } 50% { opacity: .45; } 70% { opacity: 1; } }
   @media (prefers-reduced-motion: reduce) { .ol-banner > span { animation: none; } .ol-banner > span.ol-tw, .ol-banner > span.ol-rim, .ol-banner > span.ol-rimglow, .ol-banner > span.ol-rimdark { opacity: 0; } .ol-banner > span.ol-glint { opacity: 0; } }
 </style>
@@ -68,7 +67,6 @@
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
     <span class="ol-tw t1"></span><span class="ol-tw t2"></span><span class="ol-tw t3"></span><span class="ol-tw t4"></span>
     <span class="ol-tw t5"></span><span class="ol-tw t6"></span><span class="ol-tw t7"></span><span class="ol-tw t8"></span>
-    <span class="ol-tw t1 x"></span><span class="ol-tw t3 x"></span><span class="ol-tw t5 x"></span><span class="ol-tw t7 x"></span>
     <span class="ol-stoneglow"></span><i class="ol-spill"></i><span class="ol-rimdark"></span><span class="ol-rimglow"></span><span class="ol-rim"></span>
   </a>
   <!-- BANNER END -->
