@@ -4,7 +4,7 @@ Animated banner variants for the Outlier store (BigCommerce).
 
 | # | Banner | Effect |
 |---|--------|--------|
-| 01 | [Red / blue glow](banners/01-smoke-glow/) | 16:9. The photo’s own blue and red light flickers fast and chaotically across the background and on the suppressors. No added colours. CSS only. |
+| 01 | [Red / blue glow](banners/01-smoke-glow/) | 16:9. The photo’s own blue and red light flickers chaotically across the background and on the suppressors, and the smoke slowly drifts. No added colours. CSS only. |
 
 ## Using a banner in BigCommerce
 

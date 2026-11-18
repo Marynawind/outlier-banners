@@ -20,6 +20,13 @@
   .ol-lit   { background: url(bg.jpg) center / cover no-repeat; mix-blend-mode: screen; }
   .ol-shade { background: #000; }
 
+  /* drifting smoke: the photo's own smoke slides slowly inside the smoke area, two layers in different directions */
+  .ol-drift { background: url(smoke-tex.jpg) no-repeat; mix-blend-mode: lighten; --m: url(smoke.png); }
+  .ol-drift.d1 { background-size: 122% 122%; animation: ol-drift1 38s ease-in-out infinite alternate, ol-fade 13s ease-in-out infinite; }
+  .ol-drift.d2 { background-size: 130% 130%; animation: ol-drift2 52s ease-in-out infinite alternate, ol-fade 17s ease-in-out -6s infinite; }
+  @keyframes ol-drift1 { from { background-position: 0% 60%; } to { background-position: 100% 30%; } }
+  @keyframes ol-drift2 { from { background-position: 100% 20%; } to { background-position: 0% 70%; } }
+  @keyframes ol-fade { 0%, 100% { opacity: .35; } 50% { opacity: .75; } }
   .z-b1 { --m: url(b1.png); } .z-b2 { --m: url(b2.png); } .z-b3 { --m: url(b3.png); }
   .z-r1 { --m: url(r1.png); } .z-r2 { --m: url(r2.png); } .z-r3 { --m: url(r3.png); }
   .z-ob { --m: url(ob.png); } .z-or { --m: url(or.png); }
@@ -55,6 +62,7 @@
 <div class="wrap">
   <!-- BANNER START: copy from here into BigCommerce (together with the <style> block above) -->
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
+    <span class="ol-drift d1"></span><span class="ol-drift d2"></span>
     <span class="ol-shade z-b1"></span><span class="ol-shade z-b2"></span><span class="ol-shade z-b3"></span>
     <span class="ol-shade z-r1"></span><span class="ol-shade z-r2"></span><span class="ol-shade z-r3"></span>
     <span class="ol-lit z-b1"></span><span class="ol-lit z-b2"></span><span class="ol-lit z-b3"></span>
