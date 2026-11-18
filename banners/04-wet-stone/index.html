@@ -18,7 +18,7 @@
   .ol-banner > span { position: absolute; inset: 0; pointer-events: none;
     background-image: url(bg.jpg); background-size: cover; background-position: center; mix-blend-mode: screen; opacity: 0; }
   /* water-like sparkle: the photo's own bright specks on the wet stone twinkle in 8 independent groups */
-  .ol-banner > span.ol-tw { filter: brightness(3.4); -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat;
+  .ol-banner > span.ol-tw { filter: brightness(3) sepia(.55) saturate(1.8); -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat;
     animation: ol-twinkle var(--d) ease-in-out var(--dl) infinite; }
   .t1 { --m: url(tw1.png); --d: 6.2s; --dl: 0.0s; }    .t2 { --m: url(tw2.png); --d: 8.6s; --dl: -2.4s; }
   .t3 { --m: url(tw3.png); --d: 7.4s; --dl: -5.0s; } .t4 { --m: url(tw4.png); --d: 10.2s; --dl: -1.2s; }
@@ -53,6 +53,9 @@
     65%  { opacity: .55; -webkit-mask-position: 0 0%; mask-position: 0 0%; }
     85%  { opacity: .55; -webkit-mask-position: 0 0%; mask-position: 0 0%; }
     100% { opacity: 0;  -webkit-mask-position: 0 0%; mask-position: 0 0%; } }
+  /* warm reflections on the wet stone glow with the same rhythm and colour as the suppressors' top highlight */
+  .ol-banner > span.ol-stoneglow { filter: saturate(1.6) brightness(1.4); -webkit-mask: url(stoneglow.png) center / 100% 100% no-repeat; mask: url(stoneglow.png) center / 100% 100% no-repeat;
+    animation: ol-breathe2 5s ease-in-out infinite; }
   @keyframes ol-twinkle { 0%, 100% { opacity: 0; } 25% { opacity: .2; } 45% { opacity: 1; } 60% { opacity: .3; } 80% { opacity: .8; } }
   @keyframes ol-sparkle { 0%, 100% { opacity: .1; } 30% { opacity: 1; } 50% { opacity: .45; } 70% { opacity: 1; } }
   @media (prefers-reduced-motion: reduce) { .ol-banner > span { animation: none; } .ol-banner > span.ol-tw, .ol-banner > span.ol-rim, .ol-banner > span.ol-rimglow, .ol-banner > span.ol-rimdark { opacity: 0; } .ol-banner > span.ol-glint { opacity: 0; } }
@@ -64,7 +67,7 @@
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
     <span class="ol-tw t1"></span><span class="ol-tw t2"></span><span class="ol-tw t3"></span><span class="ol-tw t4"></span>
     <span class="ol-tw t5"></span><span class="ol-tw t6"></span><span class="ol-tw t7"></span><span class="ol-tw t8"></span>
-    <i class="ol-spill"></i><span class="ol-rimdark"></span><span class="ol-rimglow"></span><span class="ol-rim"></span>
+    <span class="ol-stoneglow"></span><i class="ol-spill"></i><span class="ol-rimdark"></span><span class="ol-rimglow"></span><span class="ol-rim"></span>
   </a>
   <!-- BANNER END -->
 </div>
