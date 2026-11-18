@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Suppressors Sequence Banner</title>
+<title>Suppressors Reveal Banner</title>
 <style>
   :root { --bg: #050507; --fg: #ededeb; }
   html, body { margin: 0; background: var(--bg); color: var(--fg);
@@ -11,43 +11,35 @@
   .wrap { max-width: 1600px; margin: 0 auto; padding: 24px 16px; }
 
   /* ===== banner 16:9 =====
-     The scene starts dark; the suppressors come out of the dark one after another (left to right),
-     each with its reflection and a warm glint running down its edge; they hold, fade, and the loop repeats.
-     Only the photo's own pixels are used. */
-  .ol-banner { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden;
-    background: #000 url(bg-dark.jpg) center / cover no-repeat; --t: 10s; }
-  .ol-banner > span { position: absolute; inset: 0; pointer-events: none;
-    -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat; }
-  .ol-p { background: url(bg.jpg) center / cover no-repeat; opacity: 0; }
-  .ol-g { background: url(bg.jpg) center / cover no-repeat; mix-blend-mode: screen; opacity: 0; }
-  .ol-dim { background: #000; --m: none; -webkit-mask: none; mask: none; opacity: 0; animation: ol-dim var(--t) ease-in-out infinite; }
-
-  .s1 { --m: url(p1.png); animation: ol-in1 var(--t) ease-out infinite; }
-  .s2 { --m: url(p2.png); animation: ol-in2 var(--t) ease-out infinite; }
-  .s3 { --m: url(p3.png); animation: ol-in3 var(--t) ease-out infinite; }
-  .g1 { --m: url(g1.png); animation: ol-glint1 var(--t) ease-out infinite; }
-  .g2 { --m: url(g2.png); animation: ol-glint2 var(--t) ease-out infinite; }
-  .g3 { --m: url(g3.png); animation: ol-glint3 var(--t) ease-out infinite; }
-
-  /* timeline (10 s): dark 0–8%, #1 8–20%, #2 22–34%, #3 36–48%, hold to 82%, fade 82–94% */
-  @keyframes ol-dim  { 0%, 6% { opacity: .55; } 30% { opacity: .15; } 50%, 80% { opacity: 0; } 94%, 100% { opacity: .55; } }
-  @keyframes ol-in1  { 0%, 8%  { opacity: 0; } 20% { opacity: 1; } 82% { opacity: 1; } 94%, 100% { opacity: 0; } }
-  @keyframes ol-in2  { 0%, 22% { opacity: 0; } 34% { opacity: 1; } 82% { opacity: 1; } 94%, 100% { opacity: 0; } }
-  @keyframes ol-in3  { 0%, 36% { opacity: 0; } 48% { opacity: 1; } 82% { opacity: 1; } 94%, 100% { opacity: 0; } }
-  @keyframes ol-glint1 { 0%, 14% { opacity: 0; } 19% { opacity: .9; } 30%, 100% { opacity: 0; } }
-  @keyframes ol-glint2 { 0%, 28% { opacity: 0; } 33% { opacity: .9; } 44%, 100% { opacity: 0; } }
-  @keyframes ol-glint3 { 0%, 42% { opacity: 0; } 47% { opacity: .9; } 58%, 100% { opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) {
-    .ol-banner > span { animation: none !important; } .ol-p { opacity: 1; } .ol-g, .ol-dim { opacity: 0; } }
+     Light sweeps smoothly from left to right and reveals the suppressors; the camera slowly zooms in.
+     Only the photo's own pixels. 12 s loop, CSS only. */
+  .ol-banner { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
+  .ol-cam { position: absolute; inset: 0; transform-origin: 68% 58%; animation: ol-zoom 12s ease-in-out infinite; will-change: transform; }
+  .ol-cam > span { position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; }
+  .ol-dark { background-image: url(bg-dark.jpg); }
+  .ol-lit  { background-image: url(bg.jpg);
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 45%, transparent 55%, transparent 100%);
+            mask-image: linear-gradient(90deg, #000 0%, #000 45%, transparent 55%, transparent 100%);
+    -webkit-mask-size: 300% 100%; mask-size: 300% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    animation: ol-reveal 12s linear infinite; }
+  /* reveal: soft light edge travels left -> right (0–55%), hold, then fade back to dark */
+  @keyframes ol-reveal {
+    0%      { -webkit-mask-position: 85% 0; mask-position: 85% 0; opacity: 1; animation-timing-function: cubic-bezier(.4,0,.6,1); }
+    55%     { -webkit-mask-position: 15% 0; mask-position: 15% 0; opacity: 1; }
+    82%     { -webkit-mask-position: 15% 0; mask-position: 15% 0; opacity: 1; }
+    96%     { -webkit-mask-position: 15% 0; mask-position: 15% 0; opacity: 0; }
+    96.1%, 100% { -webkit-mask-position: 85% 0; mask-position: 85% 0; opacity: 0; } }
+  /* light camera move: slow push-in, eased back while the scene is dark */
+  @keyframes ol-zoom { 0% { transform: scale(1) translate(0,0); } 82% { transform: scale(1.07) translate(-1%, -0.5%); }
+    100% { transform: scale(1) translate(0,0); } }
+  @media (prefers-reduced-motion: reduce) { .ol-cam, .ol-lit { animation: none; } .ol-lit { -webkit-mask: none; mask: none; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <!-- BANNER START: copy from here into BigCommerce (together with the <style> block above) -->
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
-    <span class="ol-dim"></span>
-    <span class="ol-p s1"></span><span class="ol-p s2"></span><span class="ol-p s3"></span>
-    <span class="ol-g g1"></span><span class="ol-g g2"></span><span class="ol-g g3"></span>
+    <span class="ol-cam"><span class="ol-dark"></span><span class="ol-lit"></span></span>
   </a>
   <!-- BANNER END -->
 </div>
