@@ -17,40 +17,30 @@
     background: #000 url(bg.jpg) center / cover no-repeat; }
   .ol-banner > span { position: absolute; inset: 0; pointer-events: none;
     background-image: url(bg.jpg); background-size: cover; background-position: center; mix-blend-mode: screen; opacity: 0; }
-  .ol-banner > span.ol-glint { background: #ffcf96; -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat; }
-  .g1 { --m: url(glint1.png); animation: ol-sparkle 7.4s ease-in-out infinite; }
-  .g2 { --m: url(glint2.png); animation: ol-sparkle 8.6s ease-in-out -1.6s infinite; }
-  .g3 { --m: url(glint3.png); animation: ol-sparkle 6.8s ease-in-out -0.8s infinite; }
+  /* water-like sparkle: the photo's own bright specks on the wet stone twinkle in 8 independent groups */
+  .ol-banner > span.ol-tw { filter: brightness(2.6); -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat;
+    animation: ol-twinkle var(--d) ease-in-out var(--dl) infinite; }
+  .t1 { --m: url(tw1.png); --d: 3.1s; --dl: 0s; }    .t2 { --m: url(tw2.png); --d: 4.3s; --dl: -1.2s; }
+  .t3 { --m: url(tw3.png); --d: 3.7s; --dl: -2.5s; } .t4 { --m: url(tw4.png); --d: 5.1s; --dl: -0.6s; }
+  .t5 { --m: url(tw5.png); --d: 2.9s; --dl: -1.9s; } .t6 { --m: url(tw6.png); --d: 4.7s; --dl: -3.3s; }
+  .t7 { --m: url(tw7.png); --d: 3.4s; --dl: -2.2s; } .t8 { --m: url(tw8.png); --d: 5.6s; --dl: -4.1s; }
+  @keyframes ol-twinkle { 0%, 100% { opacity: 0; } 25% { opacity: .2; } 45% { opacity: 1; } 60% { opacity: .3; } 80% { opacity: .8; } }
   @keyframes ol-sparkle { 0%, 100% { opacity: .1; } 30% { opacity: 1; } 50% { opacity: .45; } 70% { opacity: 1; } }
-  /* diffused play of light: large soft patches of warm light drift slowly and overlap,
-     brightening the suppressors and the wet stone where they pass; a very faint glow in the air. */
-  .ol-banner > span.ol-light { opacity: 1; background: none; mix-blend-mode: screen; }
-  .ol-banner > span.ol-light.hit { opacity: .45; -webkit-mask: url(lit.png) center / 100% 100% no-repeat; mask: url(lit.png) center / 100% 100% no-repeat; }
-  .ol-light > i { position: absolute; left: var(--x); top: var(--y); width: var(--s); height: var(--s); border-radius: 50%;
-    background: radial-gradient(closest-side, rgba(255,200,140,.95), rgba(255,170,100,.45) 45%, rgba(255,150,80,0) 100%);
-    filter: blur(30px); transform: translate(-50%,-50%);
-    animation: ol-drift var(--d) ease-in-out var(--dl) infinite alternate, ol-breathe var(--f) ease-in-out var(--dl) infinite; }
-  .ol-light > i:nth-child(1) { --x: 22%; --y: 45%; --s: 38vw; --d: 22s; --f: 11s;  --dl: 0s;   --mx: 14vw;  --my: 4vw; }
-  .ol-light > i:nth-child(2) { --x: 55%; --y: 60%; --s: 30vw; --d: 28s; --f: 15s;  --dl: -6s;  --mx: -12vw; --my: -3vw; }
-  .ol-light > i:nth-child(3) { --x: 82%; --y: 42%; --s: 34vw; --d: 25s; --f: 13s;  --dl: -3s;  --mx: -16vw; --my: 5vw; }
-  .ol-light > i:nth-child(4) { --x: 40%; --y: 80%; --s: 26vw; --d: 32s; --f: 10s;  --dl: -9s;  --mx: 18vw;  --my: -4vw; }
-  @keyframes ol-drift   { from { transform: translate(-50%,-50%); } to { transform: translate(calc(-50% + var(--mx)), calc(-50% + var(--my))); } }
-  @keyframes ol-breathe { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
   /* suppressors keep the photo's look; only their own highlights (rim light, ring edges) sparkle like sun glints */
   .ol-banner > span.ol-shine { background-image: url(bg.jpg); filter: brightness(3); mix-blend-mode: screen;
     -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat; }
   .s1 { --m: url(shine1.png); animation: ol-sparkle 9.2s ease-in-out -1s infinite; }
   .s2 { --m: url(shine2.png); animation: ol-sparkle 10.4s ease-in-out -3s infinite; }
   .s3 { --m: url(shine3.png); animation: ol-sparkle 8.2s ease-in-out -2s infinite; }
-  @media (prefers-reduced-motion: reduce) { .ol-banner > span, .ol-light > i { animation: none; } .ol-banner > span.ol-glint { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .ol-banner > span { animation: none; } .ol-banner > span.ol-glint { opacity: 0; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <!-- BANNER START: copy from here into BigCommerce (together with the <style> block above) -->
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
-    <span class="ol-glint g1"></span><span class="ol-glint g2"></span><span class="ol-glint g3"></span>
-    <span class="ol-light hit"><i></i><i></i><i></i><i></i></span>
+    <span class="ol-tw t1"></span><span class="ol-tw t2"></span><span class="ol-tw t3"></span><span class="ol-tw t4"></span>
+    <span class="ol-tw t5"></span><span class="ol-tw t6"></span><span class="ol-tw t7"></span><span class="ol-tw t8"></span>
     <span class="ol-shine s1"></span><span class="ol-shine s2"></span><span class="ol-shine s3"></span>
   </a>
   <!-- BANNER END -->
