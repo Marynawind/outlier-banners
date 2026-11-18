@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Banner</title>
+<style>
+  :root { --bg: #050507; --fg: #ededeb; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 1600px; margin: 0 auto; padding: 24px 16px; }
+  .ol-banner { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+  .ol-banner video, .ol-banner img { display: block; width: 100%; height: 100%; object-fit: cover; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- BANNER START: MP4 1920x1080 (upload via WebDAV /content/). Image fallback: ember.webp -->
+  <a class="ol-banner" href="#" aria-label="Outlier suppressor">
+    <video src="ember.mp4" poster="poster.jpg" autoplay muted loop playsinline></video>
+  </a>
+  <!-- BANNER END -->
+</div>
+</body>
+</html>
