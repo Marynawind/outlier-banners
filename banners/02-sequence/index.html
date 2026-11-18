@@ -21,16 +21,15 @@
     -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 45%, transparent 55%, transparent 100%);
             mask-image: linear-gradient(90deg, #000 0%, #000 45%, transparent 55%, transparent 100%);
     -webkit-mask-size: 300% 100%; mask-size: 300% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-    animation: ol-reveal 7s linear infinite; }
+    animation: ol-reveal 4.6s linear infinite; }
   /* reveal: soft light edge travels left -> right (0–55%), short hold, quick fade back to dark */
   @keyframes ol-reveal {
     0%     { -webkit-mask-position: 52% 0; mask-position: 52% 0; opacity: 1; animation-timing-function: cubic-bezier(.3,0,.5,1); }
-    41.4%  { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 1; }
-    74%    { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 1; }
-    94%    { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 0; }
-    94.1%, 100% { -webkit-mask-position: 52% 0; mask-position: 52% 0; opacity: 0; } }
+    63%    { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 1; }
+    98%    { -webkit-mask-position: 24% 0; mask-position: 24% 0; opacity: 0; }
+    98.1%, 100% { -webkit-mask-position: 52% 0; mask-position: 52% 0; opacity: 0; } }
   /* from the 2nd cycle on the scene only dims partly (never back to full dark) */
-  .ol-floor { background-image: url(bg.jpg); opacity: 0; animation: ol-floor 1.4s ease-in-out 5.2s forwards; }
+  .ol-floor { background-image: url(bg.jpg); opacity: 0; animation: ol-floor 1.6s ease-in-out 2.9s forwards; }
   @keyframes ol-floor { to { opacity: .35; } }
   /* camera: very slow, light zoom in and out (16 s each way) */
   @keyframes ol-zoom { from { transform: scale(1); } to { transform: scale(1.04); } }
