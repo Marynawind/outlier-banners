@@ -11,25 +11,29 @@
   .wrap { max-width: 1600px; margin: 0 auto; padding: 24px 16px; }
 
   /* ===== banner 16:9 =====
-     Glints on the wet stone shimmer in three zones; a warm beam of light slowly crosses the suppressors.
-     Only the photo's own light (the photo screened over itself). CSS only. */
+     Glints on the wet stone shimmer in three zones; a warm beam of light slowly crosses the suppressors and the wet stone.
+     Light colour taken from the photo's warm rim light. CSS only. */
   .ol-banner { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden;
     background: #000 url(bg.jpg) center / cover no-repeat; }
   .ol-banner > span { position: absolute; inset: 0; pointer-events: none;
     background-image: url(bg.jpg); background-size: cover; background-position: center; mix-blend-mode: screen; opacity: 0; }
-  .ol-glint { -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat; }
+  .ol-banner > span.ol-glint { background: #ffcf96; -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat; }
   .g1 { --m: url(glint1.png); animation: ol-sparkle 3.7s ease-in-out infinite; }
   .g2 { --m: url(glint2.png); animation: ol-sparkle 4.3s ease-in-out -1.6s infinite; }
   .g3 { --m: url(glint3.png); animation: ol-sparkle 3.1s ease-in-out -0.8s infinite; }
-  @keyframes ol-sparkle { 0%, 100% { opacity: 0; } 20% { opacity: .9; } 35% { opacity: .2; } 55% { opacity: 1; } 75% { opacity: .1; } }
+  @keyframes ol-sparkle { 0%, 100% { opacity: 0; } 20% { opacity: .8; } 35% { opacity: .15; } 55% { opacity: .95; } 75% { opacity: .05; } }
   /* beam over the suppressors */
-  .ol-beam { filter: brightness(2.6); opacity: .9;
-    -webkit-mask-image: url(objects.png), linear-gradient(105deg, transparent 0%, transparent 44%, #000 50%, transparent 56%, transparent 100%);
-            mask-image: url(objects.png), linear-gradient(105deg, transparent 0%, transparent 44%, #000 50%, transparent 56%, transparent 100%);
+  .ol-banner > span.ol-beam { background: linear-gradient(#ffb877,#ffb877); opacity: .5;
+    -webkit-mask-image: url(objects.png), linear-gradient(105deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
+            mask-image: url(objects.png), linear-gradient(105deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
     -webkit-mask-size: 100% 100%, 300% 100%; mask-size: 100% 100%, 300% 100%;
     -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
     -webkit-mask-composite: source-in; mask-composite: intersect;
     animation: ol-beam 6s ease-in-out infinite; }
+  /* the same beam also runs across the wet stone, in step with the suppressors */
+  .ol-banner > span.ol-beam.on-stone { opacity: .6;
+    -webkit-mask-image: url(stone.png), linear-gradient(105deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
+            mask-image: url(stone.png), linear-gradient(105deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%); }
   @keyframes ol-beam {
     0%        { -webkit-mask-position: 0 0, 100% 0; mask-position: 0 0, 100% 0; }
     70%, 100% { -webkit-mask-position: 0 0, 0% 0;   mask-position: 0 0, 0% 0; } }
@@ -41,7 +45,7 @@
   <!-- BANNER START: copy from here into BigCommerce (together with the <style> block above) -->
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
     <span class="ol-glint g1"></span><span class="ol-glint g2"></span><span class="ol-glint g3"></span>
-    <span class="ol-beam"></span>
+    <span class="ol-beam on-stone"></span><span class="ol-beam"></span>
   </a>
   <!-- BANNER END -->
 </div>
