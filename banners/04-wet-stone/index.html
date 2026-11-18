@@ -26,22 +26,22 @@
   .t7 { --m: url(tw7.png); --d: 6.8s; --dl: -4.4s; } .t8 { --m: url(tw8.png); --d: 11.2s; --dl: -8.2s; }
   /* the photo's own copper rim light slowly brightens as a soft glow travels along it (no added shapes) */
   .ol-banner > span.ol-rim { filter: saturate(1.9) brightness(1.8); mix-blend-mode: normal; opacity: 1;
-    -webkit-mask-image: url(rim.png), linear-gradient(90deg, transparent 0%, transparent 43%, #000 50%, transparent 57%, transparent 100%);
-            mask-image: url(rim.png), linear-gradient(90deg, transparent 0%, transparent 43%, #000 50%, transparent 57%, transparent 100%);
+    -webkit-mask-image: url(rim.png?v=3), linear-gradient(90deg, transparent 0%, transparent 43%, #000 50%, transparent 57%, transparent 100%);
+            mask-image: url(rim.png?v=3), linear-gradient(90deg, transparent 0%, transparent 43%, #000 50%, transparent 57%, transparent 100%);
     -webkit-mask-size: 100% 100%, 300% 100%; mask-size: 100% 100%, 300% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
     -webkit-mask-composite: source-in; mask-composite: intersect;
     animation: ol-rim 6s ease-in-out infinite alternate; }
   /* the whole top highlight gently breathes */
-  .ol-banner > span.ol-rimglow { filter: saturate(1.9) brightness(1.5); mix-blend-mode: normal; -webkit-mask: url(rim.png) center / 100% 100% no-repeat; mask: url(rim.png) center / 100% 100% no-repeat;
+  .ol-banner > span.ol-rimglow { filter: saturate(1.9) brightness(1.5); mix-blend-mode: normal; -webkit-mask: url(rim.png?v=3) center / 100% 100% no-repeat; mask: url(rim.png?v=3) center / 100% 100% no-repeat;
     animation: ol-breathe2 5s ease-in-out infinite; }
   @keyframes ol-breathe2 { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
   /* light dip of the highlight in between */
-  .ol-banner > span.ol-rimdark { background: #000; -webkit-mask: url(rim.png) center / 100% 100% no-repeat; mask: url(rim.png) center / 100% 100% no-repeat;
+  .ol-banner > span.ol-rimdark { background: #000; -webkit-mask: url(rim.png?v=3) center / 100% 100% no-repeat; mask: url(rim.png?v=3) center / 100% 100% no-repeat;
     animation: ol-dim2 5s ease-in-out infinite; }
   @keyframes ol-dim2 { 0%, 100% { opacity: .8; } 40%, 60% { opacity: 0; } }
   @keyframes ol-rim { from { -webkit-mask-position: 0 0, 100% 0; mask-position: 0 0, 100% 0; } to { -webkit-mask-position: 0 0, 0% 0; mask-position: 0 0, 0% 0; } }
   /* the lower edge of the top highlight softly spreads down the body and draws back (light spilling) */
-  .ol-spill { position: absolute; inset: 0; pointer-events: none; background: url(spill.png) center / 100% 100% no-repeat;
+  .ol-spill { position: absolute; inset: 0; pointer-events: none; background: url(spill.png?v=3) center / 100% 100% no-repeat;
     mix-blend-mode: screen; opacity: 0; animation: ol-spill 6s ease-in-out infinite;
     -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 60%, transparent 100%);
             mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 60%, transparent 100%);
