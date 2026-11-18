@@ -30,14 +30,14 @@
             mask-image: url(rim.png), linear-gradient(90deg, transparent 0%, transparent 40%, #000 50%, transparent 60%, transparent 100%);
     -webkit-mask-size: 100% 100%, 300% 100%; mask-size: 100% 100%, 300% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
     -webkit-mask-composite: source-in; mask-composite: intersect;
-    animation: ol-rim 9s ease-in-out infinite alternate; }
+    animation: ol-rim 6s ease-in-out infinite alternate; }
   /* the whole top highlight gently breathes */
   .ol-banner > span.ol-rimglow { filter: saturate(1.7) brightness(1.05); mix-blend-mode: normal; -webkit-mask: url(rim.png) center / 100% 100% no-repeat; mask: url(rim.png) center / 100% 100% no-repeat;
-    animation: ol-breathe2 7s ease-in-out infinite; }
+    animation: ol-breathe2 5s ease-in-out infinite; }
   @keyframes ol-breathe2 { 0%, 100% { opacity: 0; } 50% { opacity: .8; } }
   /* light dip of the highlight in between */
   .ol-banner > span.ol-rimdark { background: #000; -webkit-mask: url(rim.png) center / 100% 100% no-repeat; mask: url(rim.png) center / 100% 100% no-repeat;
-    animation: ol-dim2 7s ease-in-out infinite; }
+    animation: ol-dim2 5s ease-in-out infinite; }
   @keyframes ol-dim2 { 0%, 100% { opacity: .18; } 40%, 60% { opacity: 0; } }
   @keyframes ol-rim { from { -webkit-mask-position: 0 0, 100% 0; mask-position: 0 0, 100% 0; } to { -webkit-mask-position: 0 0, 0% 0; mask-position: 0 0, 0% 0; } }
   @keyframes ol-twinkle { 0%, 100% { opacity: 0; } 25% { opacity: .2; } 45% { opacity: 1; } 60% { opacity: .3; } 80% { opacity: .8; } }
