@@ -3,57 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Light Sweep Banner</title>
+<title>Color Flow Banner</title>
 <style>
   :root { --bg: #050507; --fg: #ededeb; --muted: #8a8d93; }
   html, body { margin: 0; background: var(--bg); color: var(--fg);
     font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
   .wrap { max-width: 1600px; margin: 0 auto; padding: 24px 16px; }
-  .note { color: var(--muted); font-size: 13px; margin-top: 12px; }
 
   /* ===== banner 16:9 ===== */
   .ol-banner { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden;
     background: #000 url(bg.jpg) center / cover no-repeat; }
-  /* light sweep over the logo and the metal edges only */
-  .ol-sweep { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
-    background: linear-gradient(105deg, transparent 0%, transparent 45%, rgba(230,240,255,1) 50%, transparent 55%, transparent 100%);
-    background-size: 300% 100%; background-repeat: no-repeat;
-    -webkit-mask: url(shine-mask.png) center / 100% 100% no-repeat; mask: url(shine-mask.png) center / 100% 100% no-repeat;
-    animation: ol-sweep 5s ease-in-out infinite; }
-  /* the logo rests slightly dimmed; a bright band runs through it */
-  .ol-dim { position: absolute; inset: 0; pointer-events: none; background: rgba(0,0,0,.16);
-    -webkit-mask-image: url(logo-mask.png), linear-gradient(105deg, #000 0%, #000 45%, transparent 50%, #000 55%, #000 100%);
-            mask-image: url(logo-mask.png), linear-gradient(105deg, #000 0%, #000 45%, transparent 50%, #000 55%, #000 100%);
-    -webkit-mask-size: 100% 100%, 300% 100%; mask-size: 100% 100%, 300% 100%;
-    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-    -webkit-mask-composite: source-in; mask-composite: intersect;
-    animation: ol-dim 5s ease-in-out infinite; }
-  @keyframes ol-dim { 0% { -webkit-mask-position: 0 0, 66% 0; mask-position: 0 0, 66% 0; }
-    55%, 100% { -webkit-mask-position: 0 0, 33% 0; mask-position: 0 0, 33% 0; } }
-  /* coloured light flowing across the smoke and the floor */
-  .ol-flow { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: .8;
-    background:
-      radial-gradient(35% 45% at var(--bx,10%) 50%, rgba(40,100,255,.55), transparent 70%),
-      radial-gradient(35% 45% at var(--rx,90%) 55%, rgba(255,40,40,.5), transparent 70%);
-    animation: ol-flow 7s ease-in-out infinite alternate; }
-
-  @property --bx { syntax: '<percentage>'; inherits: false; initial-value: 10%; }
-  @property --rx { syntax: '<percentage>'; inherits: false; initial-value: 90%; }
-  @keyframes ol-sweep { 0% { background-position: 66% 0; } 55%, 100% { background-position: 33% 0; } }
-  @keyframes ol-flow  { from { --bx: 2%; --rx: 98%; opacity: .45; } to { --bx: 26%; --rx: 74%; opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { .ol-sweep, .ol-flow, .ol-dim { animation: none; } .ol-sweep { opacity: 0; } }
+  /* slow red <-> blue colour flow over the smoke, floor and rim light (logo stays white) */
+  .ol-flow { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: color;
+    background: linear-gradient(90deg,
+      #1e4dff 0%, #6a2cff 12%, #ff2236 25%, #6a2cff 38%, #1e4dff 50%,
+      #6a2cff 62%, #ff2236 75%, #6a2cff 88%, #1e4dff 100%);
+    background-size: 200% 100%;
+    -webkit-mask: url(color-mask.png) center / 100% 100% no-repeat;
+            mask: url(color-mask.png) center / 100% 100% no-repeat;
+    animation: ol-flow 24s linear infinite; }
+  @keyframes ol-flow { from { background-position: 0% 0; } to { background-position: 100% 0; } }
+  @media (prefers-reduced-motion: reduce) { .ol-flow { animation: none; opacity: 0; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <!-- BANNER START: copy from here into BigCommerce (together with the <style> block above) -->
   <a class="ol-banner" href="#" aria-label="Outlier suppressors">
-    <span class="ol-dim"></span>
-    <span class="ol-sweep"></span>
     <span class="ol-flow"></span>
   </a>
   <!-- BANNER END -->
-  <p class="note">01 · Light sweep — 16:9. A light sheen runs across the logo and the suppressors; blue and red light flows over the smoke. CSS only. Files: bg.jpg, shine-mask.png, logo-mask.png.</p>
 </div>
 </body>
 </html>
