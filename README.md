@@ -24,6 +24,12 @@ python3 -m http.server 8790
 
 Then open http://localhost:8790.
 
+## Site slides
+
+| Slide | Files |
+|---|---|
+| [Upgrade your setup with a suppressor](site/upgrade-suppressor/) | `upgrade-suppressor-1920x1080.jpg` replaces `Why_Buy_From_Us.jpg` in slide 2 of the Home Page Carousel on backdraftsuppressors.com. Heading: *Upgrade your setup with a suppressor*, button: *Shop Now*. Built from photo 9666: the scene is at 75% on the right so the theme's text box on the left never covers the suppressors; the wall, smoke and the dark space under the table continue around it. Previews: `preview-desktop.jpg`, `preview-phone.jpg`. |
+
 ## Banner photos
 
 Final retouched photos for static banners, full quality, in [`photos/`](photos/):
