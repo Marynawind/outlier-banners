@@ -30,24 +30,20 @@
     font: 700 clamp(14px, 1.6vw, 20px)/1 "Roboto Condensed", Arial, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #fff;
     transition: background .2s, color .2s; }
   .bdl:hover .bdl-btn, .bdl:focus-visible .bdl-btn { background: #fff; color: #000; }
-  .bdl-note { display: block; margin-top: 10px; font: 400 clamp(11px, 1vw, 13px)/1.3 Arial, sans-serif; color: rgba(255,255,255,.75); }
   @media (prefers-reduced-motion: reduce) { .bdl-cam, .bdl-lit, .bdl-floor, .bdl-black { animation: none; } .bdl-lit { -webkit-mask: none; mask: none; } }
 </style>
-<a class="bdl" id="bdl" href="https://backdraftsuppressors.com/suppressors/" aria-label="Shop suppressors at Backdraft Suppressors">
+<a class="bdl" id="bdl" href="https://backdraftsuppressors.com/" aria-label="Shop suppressors at Backdraft Suppressors">
   <span class="bdl-cam"><span class="bdl-dark"></span><span class="bdl-floor"></span><span class="bdl-lit"></span></span>
   <span class="bdl-black"></span>
-  <span class="bdl-cta"><span class="bdl-btn">Shop Now</span>
-    <span class="bdl-note" id="bdl-note">Taking you to backdraftsuppressors.com…</span></span>
+  <span class="bdl-cta"><span class="bdl-btn">Shop Now</span></span>
 </a>
 <script>
 (function () {
   var URL = 'https://backdraftsuppressors.com/suppressors/';
   var SECONDS = 7;                       /* auto-redirect delay: one full reveal of the animation */
-  var note = document.getElementById('bdl-note');
   var left = SECONDS;
   function tick() {
     if (left <= 0) { window.location.href = URL; return; }
-    if (note) note.textContent = 'Taking you to backdraftsuppressors.com in ' + left + '…';
     left--; setTimeout(tick, 1000);
   }
   tick();
