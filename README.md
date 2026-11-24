@@ -30,6 +30,10 @@ Then open http://localhost:8790.
 |---|---|
 | [Upgrade your setup with a suppressor](site/upgrade-suppressor/) | `upgrade-suppressor-1920x1080.jpg` replaces `Why_Buy_From_Us.jpg` in slide 2 of the Home Page Carousel on backdraftsuppressors.com. Heading: *Upgrade your setup with a suppressor*, button: *Shop Now*. Built from photo 9666: the scene is at 75% on the right so the theme's text box on the left never covers the suppressors; the wall, smoke and the dark space under the table continue around it. Previews: `preview-desktop.jpg`, `preview-phone.jpg`, `mockup-site-desktop.png` and `mockup-site-phone.png` (the slide inside screenshots of the live home page). |
 
+## GetOutlier landing → Backdraft (getoutlier.com/hush)
+
+[Preview](site/getoutlier-landing/) — banner 02 animation with a Shop Now button. A click anywhere, or 7 seconds without a click, takes the visitor to https://backdraftsuppressors.com/suppressors/. Paste `site/getoutlier-landing/snippet.html` into an Ecwid Instant Site "Custom code" section on a page with the URL `hush`.
+
 ## Banner photos
 
 Final retouched photos for static banners, full quality, in [`photos/`](photos/):
