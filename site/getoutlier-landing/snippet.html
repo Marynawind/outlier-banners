@@ -4,11 +4,12 @@
   [id^="tile-announcement-bar"], [id^="tile-custom-header"], [id^="tile-custom-footer"],
   [id^="tile-header"], [id^="tile-footer"], .hcb-fab { display: none !important; }
   html, body, #ec-instantsite, .ins-tiles--main { background: #000 !important; }
-  [id^="tile-custom-code"] { min-height: 100vh; display: flex; align-items: center; background: #000; }
-  .bdl { position: relative; display: block; width: 100vw; max-width: none; margin: 0 0 0 calc(50% - 50vw); aspect-ratio: 16 / 9;
+  [id^="tile-custom-code"] { background: #000; }
+  .bdl { position: relative; display: block; width: 100vw; max-width: none; margin: 0 0 0 calc(50% - 50vw); height: 100vh; height: 100svh;
     overflow: hidden; background: #000; color: #fff; text-decoration: none; cursor: pointer; }
-  .bdl-cam { position: absolute; inset: 0; transform-origin: 68% 40%; animation: bdl-zoom 25.6s linear infinite; will-change: transform; }
-  .bdl-cam > span { position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; }
+  /* full-screen on every device: the photo fills the screen, the suppressors (right part of the photo) stay in view */
+  .bdl-cam { position: absolute; inset: 0; transform-origin: 72% 45%; animation: bdl-zoom 25.6s linear infinite; will-change: transform; }
+  .bdl-cam > span { position: absolute; inset: 0; background-position: 72% 50%; background-size: cover; background-repeat: no-repeat; }
   .bdl-dark { background-image: url(https://marynawind.github.io/outlier-banners/banners/02-sequence/bg-dark.jpg); }
   .bdl-floor { background-image: url(https://marynawind.github.io/outlier-banners/banners/02-sequence/bg.jpg); opacity: 0; animation: bdl-floor 1.6s ease-in-out 4.7s forwards; }
   .bdl-lit { background-image: url(https://marynawind.github.io/outlier-banners/banners/02-sequence/bg.jpg);
@@ -31,10 +32,19 @@
   .bdl-black { position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none; animation: bdl-black 25.6s linear infinite; }
   @keyframes bdl-black { 0%, 93.5% { opacity: 0; } 96.5%, 97.5% { opacity: 1; } 100% { opacity: 0; } }
   .bdl-cta { position: absolute; left: 50%; bottom: 9%; transform: translateX(-50%); text-align: center; white-space: nowrap; }
-  .bdl-btn { display: inline-block; padding: 14px 40px; border: 2px solid #fff; background: rgba(0,0,0,.45);
-    font: 700 clamp(14px, 1.6vw, 20px)/1 "Roboto Condensed", Arial, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #fff;
+  .bdl-btn { display: inline-block; padding: .8em 2.4em; border: 2px solid #fff; background: rgba(0,0,0,.45);
+    font: 700 clamp(15px, 1.2vw + 0.8vh, 22px)/1 "Roboto Condensed", Arial, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #fff;
     transition: background .2s; }
   .bdl:hover .bdl-btn, .bdl:focus-visible .bdl-btn { background: rgba(0,0,0,.7); }
+  /* wide screens (desktop, phone landscape): keep the tops of the suppressors in view */
+  @media (min-aspect-ratio: 16/9) { .bdl-cam > span { background-position: 72% 30%; } }
+  /* portrait (phones, tablets upright): the whole group of three fits the screen width, photo edges fade into black */
+  @media (orientation: portrait) {
+    .bdl-cam > span { background-size: auto 70%; background-position: 73% 40%; }
+    .bdl-cam::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(180deg, #000 0%, #000 12%, transparent 22%, transparent 70%, #000 82%, #000 100%); }
+    .bdl-cta { bottom: 14%; }
+  }
   @media (prefers-reduced-motion: reduce) { .bdl-cam, .bdl-lit, .bdl-floor, .bdl-black { animation: none; } .bdl-lit { -webkit-mask: none; mask: none; } }
 </style>
 <a class="bdl" id="bdl" href="https://backdraftsuppressors.com/" aria-label="Shop suppressors at Backdraft Suppressors">
