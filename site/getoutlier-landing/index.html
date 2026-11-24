@@ -49,19 +49,13 @@
 <script>
 (function () {
   var URL = 'https://backdraftsuppressors.com/';
-  var SECONDS = 6;                       /* auto-redirect delay, seconds */
-  /* If the visitor came back with the Back button, stay on this page (no auto-redirect loop). */
+  var SECONDS = 5;                       /* auto-redirect delay, seconds */
+  /* only when the visitor comes back with the Back button do we stay on this page (no redirect loop) */
   var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
-  var cameBack = nav.type === 'back_forward';
-  try { if (sessionStorage.getItem('bdlRedirected')) cameBack = true; } catch (err) { cameBack = cameBack && !!err; }
   var timer;
-  if (!cameBack) {
-    timer = setTimeout(function () {
-      try { sessionStorage.setItem('bdlRedirected', '1'); } catch (err) { cameBack = cameBack && !!err; }
-      window.location.href = URL;
-    }, SECONDS * 1000);
+  if (nav.type !== 'back_forward') {
+    timer = setTimeout(function () { window.location.href = URL; }, SECONDS * 1000);
   }
-  /* page restored from the browser cache after Back: cancel any pending redirect */
   window.addEventListener('pageshow', function (e) { if (e.persisted) clearTimeout(timer); });
 })();
 </script>
