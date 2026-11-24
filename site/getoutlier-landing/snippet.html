@@ -1,5 +1,10 @@
 <!-- OUTLIER → BACKDRAFT LANDING (paste into an Ecwid "Custom code" section) -->
 <style>
+  /* landing page: hide the site's announcement bar, header and footer on this page only */
+  [id^="tile-announcement-bar"], [id^="tile-custom-header"], [id^="tile-custom-footer"],
+  [id^="tile-header"], [id^="tile-footer"], .hcb-fab { display: none !important; }
+  html, body, #ec-instantsite, .ins-tiles--main { background: #000 !important; }
+  [id^="tile-custom-code"] { min-height: 100vh; display: flex; align-items: center; background: #000; }
   .bdl { position: relative; display: block; width: 100vw; max-width: none; margin: 0 0 0 calc(50% - 50vw); aspect-ratio: 16 / 9;
     overflow: hidden; background: #000; color: #fff; text-decoration: none; cursor: pointer; }
   .bdl-cam { position: absolute; inset: 0; transform-origin: 68% 40%; animation: bdl-zoom 25.6s linear infinite; will-change: transform; }
