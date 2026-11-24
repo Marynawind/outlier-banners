@@ -4,7 +4,7 @@
 <style>html,body{margin:0;background:#000}</style></head><body>
 <!-- OUTLIER → BACKDRAFT LANDING (paste into an Ecwid "Custom code" section) -->
 <style>
-  .bdl { position: relative; display: block; width: 100%; max-width: 1600px; margin: 0 auto; aspect-ratio: 16 / 9;
+  .bdl { position: relative; display: block; width: 100vw; max-width: none; margin: 0 0 0 calc(50% - 50vw); aspect-ratio: 16 / 9;
     overflow: hidden; background: #000; color: #fff; text-decoration: none; cursor: pointer; }
   .bdl-cam { position: absolute; inset: 0; transform-origin: 68% 40%; animation: bdl-zoom 25.6s linear infinite; will-change: transform; }
   .bdl-cam > span { position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; }
@@ -45,12 +45,19 @@
 (function () {
   var URL = 'https://backdraftsuppressors.com/';
   var SECONDS = 6;                       /* auto-redirect delay, seconds */
-  var left = SECONDS;
-  function tick() {
-    if (left <= 0) { window.location.href = URL; return; }
-    left--; setTimeout(tick, 1000);
+  /* If the visitor came back with the Back button, stay on this page (no auto-redirect loop). */
+  var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+  var cameBack = nav.type === 'back_forward';
+  try { if (sessionStorage.getItem('bdlRedirected')) cameBack = true; } catch (e) { /* storage blocked: ignore */ }
+  var timer;
+  if (!cameBack) {
+    timer = setTimeout(function () {
+      try { sessionStorage.setItem('bdlRedirected', '1'); } catch (e) { /* storage blocked: ignore */ }
+      window.location.href = URL;
+    }, SECONDS * 1000);
   }
-  tick();
+  /* page restored from the browser cache after Back: cancel any pending redirect */
+  window.addEventListener('pageshow', function (e) { if (e.persisted) clearTimeout(timer); });
 })();
 </script>
 <!-- END OUTLIER → BACKDRAFT LANDING -->
