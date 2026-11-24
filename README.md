@@ -32,7 +32,7 @@ Then open http://localhost:8790.
 
 ## GetOutlier landing → Backdraft (getoutlier.com/hush)
 
-[Preview](site/getoutlier-landing/) — banner 02 animation with a Shop Now button. A click anywhere opens https://backdraftsuppressors.com/; after 7 seconds without a click the page redirects to https://backdraftsuppressors.com/suppressors/. Paste `site/getoutlier-landing/snippet.html` into an Ecwid Instant Site "Custom code" section on a page with the URL `hush`.
+[Preview](site/getoutlier-landing/) — banner 02 animation with a Shop Now button. A click anywhere opens https://backdraftsuppressors.com/; after 4 seconds without a click the page redirects to https://backdraftsuppressors.com/suppressors/. Paste `site/getoutlier-landing/snippet.html` into an Ecwid Instant Site "Custom code" section on a page with the URL `hush`.
 
 ## Banner photos
 
