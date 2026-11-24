@@ -44,11 +44,11 @@
   /* If the visitor came back with the Back button, stay on this page (no auto-redirect loop). */
   var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
   var cameBack = nav.type === 'back_forward';
-  try { if (sessionStorage.getItem('bdlRedirected')) cameBack = true; } catch (e) { /* storage blocked: ignore */ }
+  try { if (sessionStorage.getItem('bdlRedirected')) cameBack = true; } catch (err) { cameBack = cameBack && !!err; }
   var timer;
   if (!cameBack) {
     timer = setTimeout(function () {
-      try { sessionStorage.setItem('bdlRedirected', '1'); } catch (e) { /* storage blocked: ignore */ }
+      try { sessionStorage.setItem('bdlRedirected', '1'); } catch (err) { cameBack = cameBack && !!err; }
       window.location.href = URL;
     }, SECONDS * 1000);
   }
